@@ -1,0 +1,173 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Contact Us" description="Get in touch with HEX Design Labs for website creation, design, and management services. Contact us today for small business web solutions in Scottsdale, AZ.">
+	<main class="contact">
+		<section class="hero">
+			<h1>Get in Touch</h1>
+			<p>Ready to build or refresh your website? Let's discuss your project.</p>
+		</section>
+
+		<section class="contact-section">
+			<div class="contact-form">
+				<h2>Send a Message</h2>
+				<form action="/api/contact" method="POST">
+					<div class="form-group">
+						<label for="name">Name</label>
+						<input type="text" id="name" name="name" required>
+					</div>
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input type="email" id="email" name="email" required>
+					</div>
+					<div class="form-group">
+						<label for="company">Company Name</label>
+						<input type="text" id="company" name="company">
+					</div>
+					<div class="form-group">
+						<label for="website">Website</label>
+						<input type="url" id="website" name="website">
+					</div>
+					<div class="form-group">
+						<label for="message">Message</label>
+						<textarea id="message" name="message" rows="5" required></textarea>
+					</div>
+					<button type="submit" class="button primary">Send Message</button>
+				</form>
+			</div>
+
+			<div class="contact-info">
+				<h2>Contact Information</h2>
+				<p><strong>Email:</strong> <a href="mailto:info@hexdesignlabs.com">info@hexdesignlabs.com</a></p>
+				<p><strong>Phone:</strong> <a href="tel:+14809550202">(480) 955-0202</a></p>
+			</div>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+	.contact {
+		max-width: 1120px;
+		margin: 0 auto;
+		padding: 72px 24px;
+		color: var(--color-text);
+		font-family: 'Poppins', sans-serif;
+	}
+
+	.hero {
+		text-align: center;
+		padding: 72px 0 88px;
+		max-width: 860px;
+		margin: 0 auto;
+	}
+
+	.hero h1 {
+		font-size: clamp(3rem, 7vw, 5.8rem);
+		line-height: 0.95;
+		margin: 0 0 24px;
+		letter-spacing: -0.06em;
+		color: var(--color-text);
+	}
+
+	.hero p {
+		font-size: 1.18rem;
+		max-width: 680px;
+		margin: 0 auto;
+		color: var(--color-body);
+	}
+
+	.contact-section {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 40px;
+		margin-top: 40px;
+	}
+
+	.contact-info h2,
+	.contact-form h2 {
+		font-size: 2rem;
+		margin-bottom: 24px;
+		color: var(--color-text);
+	}
+
+	.contact-info p {
+		margin-bottom: 16px;
+		color: var(--color-body);
+	}
+
+	.form-group {
+		margin-bottom: 20px;
+	}
+
+	.form-group label {
+		display: block;
+		margin-bottom: 8px;
+		font-weight: 600;
+		color: var(--color-text);
+	}
+
+	.form-group input,
+	.form-group textarea {
+		width: 100%;
+		padding: 12px;
+		border: 1px solid var(--color-border);
+		border-radius: 8px;
+		font-family: 'Poppins', sans-serif;
+		font-size: 1rem;
+		background: var(--color-on-surface-light);
+		color: var(--color-text);
+	}
+
+	.form-group textarea {
+		resize: vertical;
+	}
+
+	.button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 999px;
+		padding: 14px 22px;
+		text-decoration: none;
+		font-weight: 700;
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+		background: var(--color-strong);
+		color: var(--color-on-surface-light);
+		box-shadow: var(--shadow-primary);
+		border: none;
+		cursor: pointer;
+	}
+
+	a:not(.button) {
+		color: #54B8ED;
+		font-family: 'Poppins', sans-serif;
+		font-weight: 700;
+		text-decoration: none;
+		transition: color 0.3s ease;
+	}
+
+	a:not(.button):hover {
+		color: #DC4F41;
+	}
+
+	.button:hover {
+		transform: translateY(-2px);
+	}
+
+	@media (max-width: 800px) {
+		.contact-section {
+			grid-template-columns: 1fr;
+		}
+
+		.contact {
+			padding: 40px 18px;
+		}
+
+		.hero {
+			padding: 48px 0 64px;
+		}
+	}
+</style>
