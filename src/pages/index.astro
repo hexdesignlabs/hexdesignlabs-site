@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 ---
 
-<Layout title="HEX Design Labs" description="HEX Design Labs provides small business website design, website refreshes, website support, content updates, and practical website management for owners who need help keeping their site clear and current.">
+<Layout title="Website Design & Support for Business | HEX Design Labs" description="HEX Design Labs provides small business website design, website refreshes, website support, content updates, and practical website management help.">
 	<Hero />
 	<main class="home">
 		<section class="section">
@@ -14,20 +14,23 @@ import Hero from '../components/Hero.astro';
 			</p>
 
 			<div class="cards">
-				<a href="/services" class="card">
+				<article class="card">
 					<h3>Website Design</h3>
 					<p>Clean, modern small business website design for companies that need a professional online presence, clear service information, and a structure that supports future updates.</p>
-				</a>
+					<a href="/services" class="card-link">Explore website design services</a>
+				</article>
 
-				<a href="/services" class="card">
+				<article class="card">
 					<h3>Website Management</h3>
 					<p>Ongoing website support for owners who need help with content updates, small page changes, routine site care, and practical improvements over time.</p>
-				</a>
+					<a href="/services" class="card-link">Review website management options</a>
+				</article>
 
-				<a href="/services" class="card">
+				<article class="card">
 					<h3>Marketing Support</h3>
 					<p>Design and content support for service pages, landing pages, website copy cleanup, promotional graphics, and customer-facing materials that need to feel consistent.</p>
-				</a>
+					<a href="/services" class="card-link">See content support services</a>
+				</article>
 			</div>
 		</section>
 
@@ -40,7 +43,22 @@ import Hero from '../components/Hero.astro';
 				</p>
 			</div>
 
-			<a href="/services" class="button primary">Learn More</a>
+			<a href="/services" class="button primary">View website support services</a>
+		</section>
+
+		<section class="section two-column">
+			<div>
+				<p class="eyebrow">Website Help</p>
+				<h2>A clearer website can make everyday business conversations easier.</h2>
+			</div>
+			<div class="copy-stack">
+				<p>
+					A small business website often has to answer the same questions a front desk, sales call, or referral conversation would answer: what you do, who you help, where you work, how to get in touch, and what someone should expect next. When those details are scattered or outdated, visitors can leave with more questions than confidence.
+				</p>
+				<p>
+					HEX helps organize website content around those practical needs. That may include clearer page headings, stronger service descriptions, easier contact paths, better internal links, refreshed visuals, or routine content updates. The goal is not to overcomplicate the site. The goal is to make it more useful for the people who are already looking for help.
+				</p>
+			</div>
 		</section>
 
 		<section class="section">
@@ -64,10 +82,25 @@ import Hero from '../components/Hero.astro';
 			</div>
 		</section>
 
+		<section class="section two-column">
+			<div>
+				<p class="eyebrow">Ongoing Care</p>
+				<h2>Website support does not have to mean starting over every time.</h2>
+			</div>
+			<div class="copy-stack">
+				<p>
+					Some businesses need a full website design project, but many simply need steady website support. Updating a service page, revising staff information, replacing old images, adjusting a call to action, or adding a new landing page can help the site stay closer to the current business.
+				</p>
+				<p>
+					HEX can help with those practical website management needs as they come up. The work stays flexible, so the site can be improved in sensible steps instead of waiting until everything feels overdue.
+				</p>
+			</div>
+		</section>
+
 		<section class="cta">
 			<h2>Need help with your website?</h2>
 			<p>Share what feels outdated, unclear, unfinished, or hard to manage. HEX can help sort through the next practical step and whether a website refresh, new page, or ongoing support makes sense.</p>
-			<a href="/contact" class="button primary">Start the Conversation</a>
+			<a href="/contact" class="button primary">Request website help</a>
 		</section>
 	</main>
 </Layout>
@@ -210,7 +243,9 @@ import Hero from '../components/Hero.astro';
 		border: 1px solid var(--color-border);
 		border-radius: 24px;
 		padding: 28px;
-		display: block;
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
 		color: var(--color-text);
 		text-decoration: none;
 		transition: background 0.25s ease, box-shadow 0.25s ease, color 0.25s ease, transform 0.25s ease;
@@ -233,6 +268,28 @@ import Hero from '../components/Hero.astro';
 
 	.card p {
 		font-weight: 400;
+	}
+
+	.card-link {
+		color: var(--color-text);
+		font-weight: 700;
+		text-decoration: none;
+	}
+
+	.card:hover .card-link {
+		color: var(--color-on-surface-light);
+	}
+
+	.two-column {
+		display: grid;
+		grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+		gap: 40px;
+		align-items: start;
+	}
+
+	.copy-stack {
+		display: grid;
+		gap: 18px;
 	}
 
 	.highlight {
@@ -287,6 +344,7 @@ import Hero from '../components/Hero.astro';
 
 	@media (max-width: 800px) {
 		.cards,
+		.two-column,
 		.highlight {
 			grid-template-columns: 1fr;
 		}

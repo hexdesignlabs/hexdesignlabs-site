@@ -1,7 +1,12 @@
 ---
 import logoLight from '../assets/2023 HEX Logo Icon First Light.svg';
 
-const { title = 'HEX Design Labs', description = 'HEX Design Labs provides small business website design, website refreshes, ongoing website support, content updates, and practical website management for businesses that need a clear online presence.' } = Astro.props;
+const {
+	title = 'Small Business Website Design & Support | HEX Design Labs',
+	description = 'HEX Design Labs provides small business website design, website refreshes, website support, content updates, and practical website management help.'
+} = Astro.props;
+
+const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX Design Labs`;
 ---
 
 <!doctype html>
@@ -11,16 +16,17 @@ const { title = 'HEX Design Labs', description = 'HEX Design Labs provides small
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
 		<meta name="keywords" content="small business website design, website help, website support, website management, website refresh, business website design, local business website, website content updates, Scottsdale web design" />
-		<meta property="og:title" content={`${title} - HEX Design Labs`} />
+		<meta property="og:title" content={pageTitle} />
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content="https://hexdesignlabs.com" />
 		<meta property="og:image" content="/src/assets/2023 HEX Logo Icon First Light.svg" />
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content={`${title} - HEX Design Labs`} />
+		<meta name="twitter:title" content={pageTitle} />
 		<meta name="twitter:description" content={description} />
 		<script type="application/ld+json">
 		{
@@ -44,7 +50,7 @@ const { title = 'HEX Design Labs', description = 'HEX Design Labs provides small
 			]
 		}
 		</script>
-		<title>{title}</title>
+		<title>{pageTitle}</title>
 	</head>
 	<body>
 		<header class="header">
@@ -86,6 +92,7 @@ const { title = 'HEX Design Labs', description = 'HEX Design Labs provides small
 					<p class="footer-links">
 						<a href="/privacy-policy">Privacy Policy</a>
 						<a href="/terms">Terms</a>
+						<a href="https://www.google.com/search?q=HEX+Design+Labs" target="_blank" rel="noopener noreferrer">Find HEX on Google</a>
 					</p>
 				</div>
 			</div>
