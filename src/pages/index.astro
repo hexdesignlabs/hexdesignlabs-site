@@ -3,27 +3,30 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 ---
 
-<Layout title="HEX Design Labs" description="HEX Design Labs builds, refreshes, and manages professional websites for small businesses that need practical design and reliable support.">
+<Layout title="HEX Design Labs" description="HEX Design Labs provides small business website design, website refreshes, website support, content updates, and practical website management for owners who need help keeping their site clear and current.">
 	<Hero />
 	<main class="home">
 		<section class="section">
 			<p class="eyebrow">What We Do</p>
-			<h2>Design, support, and website management for businesses that need things handled.</h2>
+			<h2>Website design, website support, and practical management for small businesses that need things handled.</h2>
+			<p class="section-intro">
+				HEX Design Labs helps small business owners, service providers, and local teams shape websites that are easier to understand, easier to update, and more useful for everyday customer questions. The focus is simple: clear pages, straightforward calls to action, flexible support, and a website that feels aligned with the business behind it.
+			</p>
 
 			<div class="cards">
 				<a href="/services" class="card">
 					<h3>Website Design</h3>
-					<p>Clean, modern websites built around your business goals, brand, and customer experience.</p>
+					<p>Clean, modern small business website design for companies that need a professional online presence, clear service information, and a structure that supports future updates.</p>
 				</a>
 
 				<a href="/services" class="card">
 					<h3>Website Management</h3>
-					<p>Ongoing website support for updates, maintenance, monitoring, and small content changes.</p>
+					<p>Ongoing website support for owners who need help with content updates, small page changes, routine site care, and practical improvements over time.</p>
 				</a>
 
 				<a href="/services" class="card">
 					<h3>Marketing Support</h3>
-					<p>Design and content support for service pages, landing pages, social graphics, and campaign materials.</p>
+					<p>Design and content support for service pages, landing pages, website copy cleanup, promotional graphics, and customer-facing materials that need to feel consistent.</p>
 				</a>
 			</div>
 		</section>
@@ -33,7 +36,7 @@ import Hero from '../components/Hero.astro';
 				<p class="eyebrow">Website Management</p>
 				<h2>Your website should not become another thing you have to babysit.</h2>
 				<p>
-					HEX provides ongoing website support for businesses that need a reliable partner to help keep their site updated, protected, and professionally maintained.
+					Many small business websites start strong and then slowly become outdated, confusing, or hard to keep current. HEX provides website help for businesses that need a steady partner for updates, maintenance, page improvements, and support after launch, without turning every small change into a separate project.
 				</p>
 			</div>
 
@@ -43,6 +46,9 @@ import Hero from '../components/Hero.astro';
 		<section class="section">
 			<p class="eyebrow">Who We Help</p>
 			<h2>Built for practical businesses that need clear, credible websites.</h2>
+			<p class="section-intro">
+				Whether the need is a new business website, a website refresh, a clearer services page, or ongoing website management, the work is shaped around how real customers look for information. That might mean cleaner navigation, stronger service descriptions, better contact paths, or content that explains what the business does without making visitors dig.
+			</p>
 
 			<div class="pill-grid">
 				<span>Small Businesses</span>
@@ -60,7 +66,7 @@ import Hero from '../components/Hero.astro';
 
 		<section class="cta">
 			<h2>Need help with your website?</h2>
-			<p>Let’s figure out what your site needs and whether HEX is the right fit.</p>
+			<p>Share what feels outdated, unclear, unfinished, or hard to manage. HEX can help sort through the next practical step and whether a website refresh, new page, or ongoing support makes sense.</p>
 			<a href="/contact" class="button primary">Start the Conversation</a>
 		</section>
 	</main>
@@ -116,6 +122,11 @@ import Hero from '../components/Hero.astro';
 		margin: 0;
 	}
 
+	.section-intro {
+		max-width: 780px;
+		margin-top: 18px;
+	}
+
 	.hero-text {
 		font-size: 1.18rem;
 		max-width: 680px;
@@ -141,7 +152,14 @@ import Hero from '../components/Hero.astro';
 		text-decoration: none;
 		font-weight: 700;
 		transition: transform 0.2s ease, box-shadow 0.2s ease;
-		border: 1px solid var(--color-border);
+		border: none;
+		outline: none;
+		box-shadow: none;
+	}
+
+	.button:focus,
+	.button:focus-visible {
+		outline: none;
 	}
 
 	a:not(.button) {
@@ -163,7 +181,7 @@ import Hero from '../components/Hero.astro';
 	.primary {
 		background: var(--color-strong);
 		color: var(--color-on-surface-light);
-		box-shadow: var(--shadow-primary);
+		box-shadow: none;
 	}
 
 	.secondary {
@@ -211,6 +229,10 @@ import Hero from '../components/Hero.astro';
 	.card:hover h3,
 	.card:hover p {
 		color: var(--color-on-surface-light);
+	}
+
+	.card p {
+		font-weight: 400;
 	}
 
 	.highlight {

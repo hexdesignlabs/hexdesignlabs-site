@@ -1,7 +1,7 @@
 ---
-import logoIconLight from '../assets/2023 HEX Icon Light.svg';
+import logoLight from '../assets/2023 HEX Logo Icon First Light.svg';
 
-const { title = 'HEX Design Labs', description = 'HEX Design Labs specializes in website creation, design, and management for small businesses in Scottsdale, AZ. Get professional websites that drive results.' } = Astro.props;
+const { title = 'HEX Design Labs', description = 'HEX Design Labs provides small business website design, website refreshes, ongoing website support, content updates, and practical website management for businesses that need a clear online presence.' } = Astro.props;
 ---
 
 <!doctype html>
@@ -13,7 +13,7 @@ const { title = 'HEX Design Labs', description = 'HEX Design Labs specializes in
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
-		<meta name="keywords" content="small business website design, website management, website creation, Scottsdale web design, small business web development" />
+		<meta name="keywords" content="small business website design, website help, website support, website management, website refresh, business website design, local business website, website content updates, Scottsdale web design" />
 		<meta property="og:title" content={`${title} - HEX Design Labs`} />
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
@@ -27,7 +27,7 @@ const { title = 'HEX Design Labs', description = 'HEX Design Labs specializes in
 			"@context": "https://schema.org",
 			"@type": "LocalBusiness",
 			"name": "HEX Design Labs",
-			"description": "Website creation, design, and management services for small businesses.",
+			"description": "Small business website design, website refreshes, website support, content updates, and practical website management.",
 			"url": "https://hexdesignlabs.com",
 			"telephone": "+14809550202",
 			"email": "info@hexdesignlabs.com",
@@ -50,7 +50,7 @@ const { title = 'HEX Design Labs', description = 'HEX Design Labs specializes in
 		<header class="header">
 			<div class="container header-content">
 				<a href="/" class="logo-link">
-					<img src={logoIconLight.src} alt="HEX Design Labs Logo" class="logo" />
+					<img src={logoLight.src} alt="HEX Design Labs Logo" class="logo" />
 				</a>
 				<nav class="nav desktop-nav">
 					<a href="/about" class="nav-link">About</a>
@@ -345,7 +345,14 @@ const { title = 'HEX Design Labs', description = 'HEX Design Labs specializes in
 		text-decoration: none;
 		font-weight: 700;
 		transition: transform 0.2s ease, box-shadow 0.2s ease;
-		border: 1px solid var(--color-border);
+		border: none;
+		outline: none;
+		box-shadow: none;
+	}
+
+	.button:focus,
+	.button:focus-visible {
+		outline: none;
 	}
 
 	.button:hover {
@@ -355,7 +362,7 @@ const { title = 'HEX Design Labs', description = 'HEX Design Labs specializes in
 	.primary {
 		background: var(--color-strong);
 		color: var(--color-on-surface-light);
-		box-shadow: var(--shadow-primary);
+		box-shadow: none;
 	}
 
 	.secondary {
@@ -381,6 +388,8 @@ const { title = 'HEX Design Labs', description = 'HEX Design Labs specializes in
 		margin-top: 20px;
 		background: var(--color-on-surface-light);
 		color: var(--color-on-surface-dark);
+		border: none;
+		outline: none;
 	}
 
 	.content-page {
@@ -445,11 +454,17 @@ const { title = 'HEX Design Labs', description = 'HEX Design Labs specializes in
 			gap: 6px;
 			width: 44px;
 			height: 44px;
-			border: 1px solid rgba(255, 255, 255, 0.18);
+			border: none;
+			outline: none;
 			border-radius: 999px;
 			background: rgba(255, 255, 255, 0.04);
 			cursor: pointer;
 			overflow: hidden;
+		}
+
+		.mobile-menu-button:focus,
+		.mobile-menu-button:focus-visible {
+			outline: none;
 		}
 
 		.mobile-menu-button span {
