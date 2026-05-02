@@ -1,5 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const formsparkActionUrl = import.meta.env.PUBLIC_FORMSPARK_ACTION_URL ?? 'https://submit-form.com/echo';
+const turnstileSitekey = import.meta.env.PUBLIC_TURNSTILE_SITEKEY ?? '1x00000000000000000000AA';
 ---
 
 <Layout title="Contact Us" description="Get in touch with HEX Design Labs for website creation, design, and management services. Contact us today for small business web solutions in Scottsdale, AZ.">
@@ -12,7 +15,9 @@ import Layout from '../layouts/Layout.astro';
 		<section class="contact-section">
 			<div class="contact-form">
 				<h2>Send a Message</h2>
-				<form action="/api/contact" method="POST">
+				<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+				<form action={formsparkActionUrl} method="POST">
+					<input type="hidden" name="_append" value="false">
 					<div class="form-group">
 						<label for="name">Name</label>
 						<input type="text" id="name" name="name" required>
@@ -33,14 +38,11 @@ import Layout from '../layouts/Layout.astro';
 						<label for="message">Message</label>
 						<textarea id="message" name="message" rows="5" required></textarea>
 					</div>
+					<div class="turnstile-wrap">
+						<div class="cf-turnstile" data-sitekey={turnstileSitekey} data-action="contact" data-theme="light"></div>
+					</div>
 					<button type="submit" class="button primary">Send Message</button>
 				</form>
-			</div>
-
-			<div class="contact-info">
-				<h2>Contact Information</h2>
-				<p><strong>Email:</strong> <a href="mailto:info@hexdesignlabs.com">info@hexdesignlabs.com</a></p>
-				<p><strong>Phone:</strong> <a href="tel:+14809550202">(480) 955-0202</a></p>
 			</div>
 		</section>
 	</main>
@@ -52,14 +54,14 @@ import Layout from '../layouts/Layout.astro';
 	.contact {
 		max-width: 1120px;
 		margin: 0 auto;
-		padding: 72px 24px;
+		padding: 56px 24px 72px;
 		color: var(--color-text);
 		font-family: 'Poppins', sans-serif;
 	}
 
 	.hero {
 		text-align: center;
-		padding: 72px 0 88px;
+		padding: 56px 0 40px;
 		max-width: 860px;
 		margin: 0 auto;
 	}
@@ -82,20 +84,14 @@ import Layout from '../layouts/Layout.astro';
 	.contact-section {
 		display: grid;
 		grid-template-columns: 1fr;
-		gap: 40px;
-		margin-top: 40px;
+		gap: 44px;
+		margin-top: 8px;
 	}
 
-	.contact-info h2,
 	.contact-form h2 {
 		font-size: 2rem;
 		margin-bottom: 24px;
 		color: var(--color-text);
-	}
-
-	.contact-info p {
-		margin-bottom: 16px;
-		color: var(--color-body);
 	}
 
 	.form-group {
@@ -123,6 +119,11 @@ import Layout from '../layouts/Layout.astro';
 
 	.form-group textarea {
 		resize: vertical;
+	}
+
+	.turnstile-wrap {
+		margin: 0 0 20px;
+		min-height: 65px;
 	}
 
 	.button {
@@ -163,11 +164,11 @@ import Layout from '../layouts/Layout.astro';
 		}
 
 		.contact {
-			padding: 40px 18px;
+			padding: 32px 18px 48px;
 		}
 
 		.hero {
-			padding: 48px 0 64px;
+			padding: 40px 0 28px;
 		}
 	}
 </style>

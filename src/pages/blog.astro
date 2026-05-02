@@ -14,17 +14,17 @@ import Layout from '../layouts/Layout.astro';
 
 		<section class="section">
 			<div class="grid">
-				<article class="card">
+				<article class="card blog-card blog-card-red">
 					<p class="eyebrow">Coming Soon</p>
 					<h3>What to update before launching a new website</h3>
 					<p>A simple checklist for content, forms, analytics, search basics, and final review.</p>
 				</article>
-				<article class="card">
+				<article class="card blog-card blog-card-green">
 					<p class="eyebrow">Coming Soon</p>
 					<h3>When a website refresh is enough</h3>
 					<p>How to decide between a full rebuild and targeted improvements to an existing site.</p>
 				</article>
-				<article class="card">
+				<article class="card blog-card blog-card-blue">
 					<p class="eyebrow">Coming Soon</p>
 					<h3>Why website maintenance matters</h3>
 					<p>The small recurring tasks that keep a business website healthier over time.</p>
@@ -33,3 +33,31 @@ import Layout from '../layouts/Layout.astro';
 		</section>
 	</main>
 </Layout>
+
+<style>
+	.blog-card {
+		border-color: var(--blog-card-color);
+		background: var(--blog-card-color);
+	}
+
+	.blog-card h3,
+	.blog-card p {
+		color: #ffffff;
+	}
+
+	.blog-card .eyebrow {
+		color: rgba(255, 255, 255, 0.82);
+	}
+
+	.blog-card-red {
+		--blog-card-color: #DC4F41;
+	}
+
+	.blog-card-green {
+		--blog-card-color: #ACBC3B;
+	}
+
+	.blog-card-blue {
+		--blog-card-color: #54B8ED;
+	}
+</style>
