@@ -1,4 +1,6 @@
 ---
+import logoIconLight from '../assets/2023 HEX Icon Light.svg';
+
 const { title = 'HEX Design Labs', description = 'HEX Design Labs specializes in website creation, design, and management for small businesses in Scottsdale, AZ. Get professional websites that drive results.' } = Astro.props;
 ---
 
@@ -48,7 +50,7 @@ const { title = 'HEX Design Labs', description = 'HEX Design Labs specializes in
 		<header class="header">
 			<div class="container header-content">
 				<a href="/" class="logo-link">
-					<img src="/src/assets/2023 HEX Logo Icon First Light.svg" alt="HEX Design Labs Logo" class="logo" />
+					<img src={logoIconLight.src} alt="HEX Design Labs Logo" class="logo" />
 				</a>
 				<nav class="nav desktop-nav">
 					<a href="/about" class="nav-link">About</a>
