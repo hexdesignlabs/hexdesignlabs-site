@@ -1,0 +1,13 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ThankYouMessage from '../components/ThankYouMessage.astro';
+---
+
+<Layout title="Your Message Was Sent" description="Thanks for reaching out to HEX Design Labs.">
+	<ThankYouMessage
+		heading="Your message was sent to HEX"
+		body="Thanks for reaching out to HEX Design Labs. We’ll review your message and follow up soon."
+		buttonText="Back to Home"
+		href="/"
+	/>
+</Layout>

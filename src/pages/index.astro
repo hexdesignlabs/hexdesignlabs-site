@@ -71,14 +71,18 @@ import Hero from '../components/Hero.astro';
 			<div class="pill-grid">
 				<span>Small Businesses</span>
 				<span>Law Firms</span>
-				<span>Restaurants & Bars</span>
 				<span>Construction</span>
 				<span>MSPs</span>
-				<span>Salons</span>
 				<span>Daycares</span>
-				<span>Pet Groomers</span>
 				<span>Manufacturing</span>
 				<span>Service Businesses</span>
+				<span>IT Companies</span>
+				<span>Fire Safety</span>
+				<span>Software Developers</span>
+				<span>Counseling Services</span>
+				<span>Wellness Groups</span>
+				<span>Music Industry</span>
+				<span>Landscapers</span>
 			</div>
 		</section>
 
@@ -127,7 +131,7 @@ import Hero from '../components/Hero.astro';
 
 	h1 {
 		font-size: clamp(3rem, 7vw, 5.8rem);
-		line-height: 0.95;
+		line-height: 1.06;
 		margin: 0 0 24px;
 		letter-spacing: -0.06em;
 		color: var(--color-text)
@@ -187,7 +191,7 @@ import Hero from '../components/Hero.astro';
 		transition: transform 0.2s ease, box-shadow 0.2s ease;
 		border: none;
 		outline: none;
-		box-shadow: none;
+		box-shadow: var(--shadow-button);
 	}
 
 	.button:focus,
@@ -208,23 +212,26 @@ import Hero from '../components/Hero.astro';
 	}
 
 	.button:hover {
-		transform: translateY(-2px);
+		transform: translate(3px, 3px);
+		box-shadow: var(--shadow-button-hover);
+		background: var(--color-on-surface-light);
+		color: var(--color-text);
 	}
 
 	.primary {
-		background: var(--color-strong);
+		background: var(--color-primary);
 		color: var(--color-on-surface-light);
-		box-shadow: none;
+		box-shadow: var(--shadow-button);
 	}
 
 	.secondary {
-		background: var(--color-surface-muted);
-		color: var(--color-on-surface-dark);
+		background: var(--color-on-surface-light);
+		color: var(--color-text);
 	}
 
 	.section {
 		padding: 72px 0;
-		border-top: 1px solid var(--color-border);
+		border-top: 0;
 	}
 
 	.home > .section:first-child {
@@ -240,7 +247,7 @@ import Hero from '../components/Hero.astro';
 
 	.card {
 		background: var(--color-surface);
-		border: 1px solid var(--color-border);
+		border: 0;
 		border-radius: 24px;
 		padding: 28px;
 		display: flex;
@@ -255,8 +262,8 @@ import Hero from '../components/Hero.astro';
 		background: var(--color-strong);
 		color: var(--color-on-surface-light);
 		box-shadow:
-			0 0 0 6px rgba(255, 255, 255, 0.18),
-			0 0 34px rgba(255, 255, 255, 0.34),
+			inset 8px 8px 18px rgba(17, 17, 17, 0.12),
+			inset -8px -8px 18px rgba(17, 17, 17, 0),
 			0 22px 44px rgba(17, 17, 17, 0.22);
 		transform: translateY(-8px);
 	}
@@ -297,10 +304,16 @@ import Hero from '../components/Hero.astro';
 		grid-template-columns: 1fr auto;
 		align-items: center;
 		gap: 32px;
-		background: var(--color-surface-muted);
+		background: var(--color-strong);
 		border-radius: 32px;
 		padding: 44px;
 		margin: 32px 0;
+	}
+
+	.highlight .eyebrow,
+	.highlight h2,
+	.highlight p {
+		color: var(--color-on-surface-light);
 	}
 
 	.pill-grid {
@@ -311,35 +324,52 @@ import Hero from '../components/Hero.astro';
 	}
 
 	.pill-grid span {
-		background: var(--color-surface-muted);
+		background: var(--color-accent);
 		border: 1px solid var(--color-border);
 		border-radius: 999px;
 		padding: 10px 16px;
 		font-weight: 600;
-		color: var(--color-on-surface-dark);
+		color: var(--color-text);
 	}
 
 	.cta {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
 		text-align: center;
 		background: var(--color-strong);
 		color: var(--color-on-surface-light);
+		border: 1px solid var(--color-border);
 		border-radius: 36px;
-		padding: 64px 24px;
+		min-height: 380px;
+		padding: 96px 32px;
 		margin-top: 56px;
 	}
 
 	.cta h2 {
 		color: var(--color-on-surface-light);
+		max-width: 760px;
+		margin-left: auto;
+		margin-right: auto;
 	}
 
 	.cta p {
 		color: var(--color-on-muted);
+		max-width: 760px;
+		margin-left: auto;
+		margin-right: auto;
 		margin-bottom: 28px;
 	}
 
 	.cta .primary {
 		background: var(--color-on-surface-light);
-		color: var(--color-on-surface-dark);
+		color: var(--color-text);
+	}
+
+	.cta .primary:hover {
+		background: var(--color-primary);
+		color: var(--color-on-surface-light);
 	}
 
 	@media (max-width: 800px) {

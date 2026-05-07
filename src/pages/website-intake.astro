@@ -1,0 +1,155 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FormPageStyles from '../components/FormPageStyles.astro';
+
+const formsparkActionUrl =
+	import.meta.env.PUBLIC_FORMSPARK_WEBSITE_INTAKE_ENDPOINT ?? 'https://submit-form.com/DrBbqq9RL';
+const turnstileSitekey = import.meta.env.PUBLIC_TURNSTILE_SITEKEY ?? '1x00000000000000000000AA';
+const redirectUrl = 'https://hexdesignlabs.com/website-intake-received/';
+---
+
+<Layout title="Website Design & Development Intake" description="Submit a new website project or website redesign intake to HEX Design Labs for scope review, questions, and next steps.">
+	<main class="form-page form-theme-green">
+		<section class="form-hero">
+			<h1>New Website Project Intake</h1>
+			<p>Share the early project details for a new website build or redesign so HEX can review scope, fit, timing, and next steps.</p>
+		</section>
+
+		<section class="form-section">
+			<div class="hex-form">
+				<h2>Website Design & Dev Intake</h2>
+				<p class="form-intro">
+					This intake helps collect the main project details before a fuller conversation about design, content, features, timeline, and budget.
+				</p>
+				<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+				<form action={formsparkActionUrl} method="POST">
+					<input type="hidden" name="_redirect" value={redirectUrl}>
+					<input type="hidden" name="_append" value="false">
+					<div class="form-row">
+						<div class="form-group">
+							<label for="first_name">First Name</label>
+							<input type="text" id="first_name" name="first_name" autocomplete="given-name" required>
+						</div>
+						<div class="form-group">
+							<label for="last_name">Last Name</label>
+							<input type="text" id="last_name" name="last_name" autocomplete="family-name" required>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group">
+							<label for="company_name">Company Name</label>
+							<input type="text" id="company_name" name="company_name" autocomplete="organization" required>
+						</div>
+						<div class="form-group">
+							<label for="email">Email Address</label>
+							<input type="email" id="email" name="email" autocomplete="email" required>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group">
+							<label for="phone">Phone Number</label>
+							<input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="Optional">
+						</div>
+						<div class="form-group">
+							<label for="existing_website_url">Existing Website URL</label>
+							<input type="url" id="existing_website_url" name="existing_website_url" placeholder="Optional">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="project_type">Is this a new website or redesign?</label>
+						<select id="project_type" name="project_type" required>
+							<option value="" disabled selected>Select project type</option>
+							<option>New Website</option>
+							<option>Website Redesign</option>
+							<option>Not Sure</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="business_description">Business / organization description</label>
+						<textarea id="business_description" name="business_description" rows="5" placeholder="What does the business do, who does it serve, and where does it operate?" required></textarea>
+					</div>
+					<div class="form-group">
+						<label for="website_goals">Main goals for the website</label>
+						<textarea id="website_goals" name="website_goals" rows="5" placeholder="What should the new or redesigned site help accomplish?" required></textarea>
+					</div>
+					<div class="form-group">
+						<label for="pages_needed">Pages needed</label>
+						<textarea id="pages_needed" name="pages_needed" rows="5" required></textarea>
+					</div>
+					<div class="form-group">
+						<label for="features_needed">Features needed</label>
+						<textarea id="features_needed" name="features_needed" rows="5" required></textarea>
+					</div>
+					<div class="form-row">
+						<div class="form-group">
+							<label for="branding_status">Do you already have branding?</label>
+							<select id="branding_status" name="branding_status" required>
+								<option value="" disabled selected>Select branding status</option>
+								<option>Yes, logo and brand colors are ready</option>
+								<option>Some branding exists</option>
+								<option>No, branding help is needed</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="content_status">Do you have website copy/content/images ready?</label>
+							<select id="content_status" name="content_status" required>
+								<option value="" disabled selected>Select content status</option>
+								<option>Yes</option>
+								<option>Partially</option>
+								<option>No, content help is needed</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="desired_timeline">Desired timeline</label>
+						<select id="desired_timeline" name="desired_timeline" required>
+							<option value="" disabled selected>Select timeline</option>
+							<option>ASAP</option>
+							<option>3-4 weeks</option>
+							<option>1-2 months</option>
+							<option>3-4 months</option>
+							<option>Flexible</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="estimated_budget">Estimated budget</label>
+						<textarea id="estimated_budget" name="estimated_budget" rows="2" class="compact-textarea" placeholder="Share a figure, range, or a sentence or two." required></textarea>
+					</div>
+					<div class="form-group">
+						<label for="additional_notes">Additional notes</label>
+						<textarea id="additional_notes" name="additional_notes" rows="4" placeholder="Optional"></textarea>
+					</div>
+					<!-- TODO: Enable attachment uploads after configuring Formspark's Uploadcare integration and adding an Uploadcare public key. -->
+					<div class="checkbox-group">
+						<label class="checkbox-label" for="intake_consent">
+							<input type="checkbox" id="intake_consent" name="intake_consent" value="Accepted" required>
+							<span>We understand this intake form helps HEX Design Labs evaluate project scope and does not guarantee project acceptance or final pricing.</span>
+						</label>
+					</div>
+					<div class="turnstile-wrap">
+						<div class="cf-turnstile" data-sitekey={turnstileSitekey} data-action="website-intake" data-theme="light"></div>
+					</div>
+					<div class="form-submit">
+						<button type="submit" class="button primary">Submit Website Project Intake to HEX</button>
+					</div>
+				</form>
+			</div>
+		</section>
+		<section class="form-next-actions" aria-labelledby="intake-next-actions">
+			<h2 id="intake-next-actions">Need a different path?</h2>
+			<p>Choose the form that best matches what you need HEX to review.</p>
+			<div class="form-next-buttons">
+				<a href="/contact" class="button secondary">Contact HEX</a>
+				<a href="/support" class="button secondary">Submit a Support Request</a>
+			</div>
+		</section>
+	</main>
+	<FormPageStyles />
+</Layout>
+
+<style>
+	.form-next-actions {
+		background: var(--color-surface);
+		border-color: var(--color-on-surface-light);
+	}
+</style>

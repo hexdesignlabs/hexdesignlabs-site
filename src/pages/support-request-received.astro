@@ -1,0 +1,13 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ThankYouMessage from '../components/ThankYouMessage.astro';
+---
+
+<Layout title="Support Request Received" description="Thanks for submitting your website support request to HEX Design Labs.">
+	<ThankYouMessage
+		heading="Your support request was sent to HEX"
+		body="Thanks for submitting your request. We’ll review the details and follow up as soon as possible. If this is tied to an active support plan, the request may be reviewed against your monthly support time or billed hourly if outside the plan scope."
+		buttonText="Back to Home"
+		href="/"
+	/>
+</Layout>

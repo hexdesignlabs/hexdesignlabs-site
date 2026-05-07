@@ -35,7 +35,6 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 			"name": "HEX Design Labs",
 			"description": "Small business website design, website refreshes, website support, content updates, and practical website management.",
 			"url": "https://hexdesignlabs.com",
-			"telephone": "+14809550202",
 			"email": "info@hexdesignlabs.com",
 			"address": {
 				"@type": "PostalAddress",
@@ -62,7 +61,13 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 					<a href="/about" class="nav-link">About</a>
 					<a href="/services" class="nav-link">Services</a>
 					<a href="/blog" class="nav-link">Blog</a>
-					<a href="/contact" class="nav-link">Contact</a>
+					<div class="nav-item has-submenu">
+						<a href="/contact" class="nav-link">Contact</a>
+						<div class="submenu" aria-label="Contact options">
+							<a href="/support">Support Request</a>
+							<a href="/website-intake">Website Intake</a>
+						</div>
+					</div>
 				</nav>
 				<div class="mobile-menu">
 					<input class="mobile-menu-toggle" type="checkbox" id="mobile-menu-toggle" aria-label="Toggle navigation menu" />
@@ -77,6 +82,8 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 						<a href="/services" class="nav-link">Services</a>
 						<a href="/blog" class="nav-link">Blog</a>
 						<a href="/contact" class="nav-link">Contact</a>
+						<a href="/support" class="nav-link nav-sublink">Support Request</a>
+						<a href="/website-intake" class="nav-link nav-sublink">Website Intake</a>
 						<a href="/privacy-policy" class="nav-link">Privacy Policy</a>
 						<a href="/terms" class="nav-link">Terms</a>
 					</nav>
@@ -88,8 +95,9 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 			<div class="container">
 				<div class="footer-contact">
 					<p><strong>Email:</strong> info@hexdesignlabs.com</p>
-					<p><strong>Phone:</strong> (480) 955-0202</p>
 					<p class="footer-links">
+						<a href="/support">Support Request</a>
+						<a href="/website-intake">New Website Intake</a>
 						<a href="/privacy-policy">Privacy Policy</a>
 						<a href="/terms">Terms</a>
 						<a href="https://www.google.com/search?q=HEX+Design+Labs" target="_blank" rel="noopener noreferrer">Find HEX on Google</a>
@@ -106,30 +114,34 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 	:root {
 		--color-primary: #111111;
 		--color-accent: #ACBC3B;
-		--color-bg: #faf7f3;
+		--color-bg: #f3eee6;
 		--color-text: #111111;
 		--color-body: #111111d3;
 		--color-strong: #DC4F41;
 		--color-surface: #54B8ED;
-		--color-surface-muted:#ffffff;
+		--color-surface-muted: #fffdf7;
 		--color-border: #111111;
-		--color-on-surface-light: #ffffff;
+		--color-on-surface-light: #fffdf7;
 		--color-on-surface-dark: #54B8ED;
-		--color-on-muted: #ffffffec;
+		--color-on-muted: #fffdf7ec;
 		--shadow-primary: 0 12px 24px rgba(18, 24, 38, 0.18);
-		--shadow-border-light: rgba(255, 255, 255, 0.12);
+		--shadow-button: 6px 8px 10px rgba(17, 17, 17, 0.3);
+		--shadow-button-hover: 4px 5px 8px rgba(17, 17, 17, 0.26);
+		--shadow-inset-box: inset 12px 12px 24px rgba(17, 17, 17, 0.18), inset -12px -12px 24px rgba(17, 17, 17, 0);
+		--shadow-border-light: rgba(255, 253, 247, 0.12);
 		--shadow-border-dark: rgba(0, 0, 0, 0.24);
 		--gradient-brand: linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%);
 		--gradient-alert: linear-gradient(14deg, #d83333 0%, #f041ff 100%);
 		--gradient-code-bg: linear-gradient(66.77deg, #f3cddd 0%, #f5cee7 100%);
 		--gradient-code-border: linear-gradient(155deg, #d83333 0%, #f041ff 18%, #f5cee7 45%);
-		--surface-overlay: rgba(255, 255, 255, 0.55);
+		--surface-overlay: rgba(255, 253, 247, 0.55);
 	}
 
 	*,
 	*::before,
 	*::after {
 		box-sizing: border-box;
+		font-family: 'Poppins', sans-serif;
 	}
 
 	html,
@@ -149,7 +161,13 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 		font-family: 'Poppins', sans-serif;
 	}
 
+	body > main,
+	body > .hero-shell {
+		flex: 0 0 auto;
+	}
+
 	.header {
+		flex: 0 0 auto;
 		position: relative;
 		z-index: 10;
 		width: 100%;
@@ -160,8 +178,9 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 	}
 
 	.footer {
+		flex: 0 0 auto;
 		background: var(--color-primary);
-		color: white;
+		color: var(--color-on-surface-light);
 		padding: 2rem 0;
 		margin-top: auto;
 	}
@@ -206,6 +225,10 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 		justify-content: flex-end;
 	}
 
+	.nav-item {
+		position: relative;
+	}
+
 	.nav-link {
 		color: var(--color-on-surface-light);
 		text-decoration: none;
@@ -213,9 +236,48 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 		font-weight: 600;
 		font-size: 1rem;
 		padding: 0.5rem 1rem;
-		border-radius: 4px;
+		border-radius: 20px;
 		transition: all 0.3s ease;
 		background-color: transparent;
+	}
+
+	.submenu {
+		position: absolute;
+		top: calc(100% + 8px);
+		right: 0;
+		z-index: 20;
+		display: grid;
+		gap: 4px;
+		min-width: 220px;
+		padding: 12px;
+		border-radius: 20px;
+		background: var(--color-primary);
+		box-shadow: var(--shadow-button), var(--shadow-inset-box);
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(8px);
+		transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+	}
+
+	.has-submenu:hover .submenu,
+	.has-submenu:focus-within .submenu {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+	}
+
+	.submenu a {
+		display: block;
+		padding: 10px 12px;
+		border-radius: 20px;
+		color: var(--color-on-surface-light);
+		font-weight: 700;
+		text-decoration: none;
+	}
+
+	.submenu a:hover {
+		color: var(--color-accent);
+		background-color: rgba(172, 188, 59, 0.1);
 	}
 
 	.nav-link:hover {
@@ -277,7 +339,7 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 
 	.page h1 {
 		font-size: clamp(3rem, 7vw, 5.8rem);
-		line-height: 0.95;
+		line-height: 1.06;
 		margin: 0 0 24px;
 		letter-spacing: -0.06em;
 		color: var(--color-text);
@@ -315,7 +377,7 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 
 	.section {
 		padding: 64px 0;
-		border-top: 1px solid var(--color-border);
+		border-top: 0;
 	}
 
 	.grid {
@@ -335,12 +397,13 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 	.card {
 		background: var(--color-surface-muted);
 		border: 1px solid var(--color-border);
-		border-radius: 8px;
+		border-radius: 20px;
 		padding: 28px;
 	}
 
 	.accent-card {
 		background: var(--color-surface);
+		border: 0;
 	}
 
 	.button {
@@ -351,10 +414,10 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 		padding: 14px 22px;
 		text-decoration: none;
 		font-weight: 700;
-		transition: transform 0.2s ease, box-shadow 0.2s ease;
+		transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
 		border: none;
 		outline: none;
-		box-shadow: none;
+		box-shadow: var(--shadow-button);
 	}
 
 	.button:focus,
@@ -363,40 +426,155 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 	}
 
 	.button:hover {
-		transform: translateY(-2px);
+		transform: translate(3px, 3px);
+		box-shadow: var(--shadow-button-hover);
 	}
 
-	.primary {
-		background: var(--color-strong);
+	.primary,
+	.button-dark,
+	.button {
+		background: var(--color-primary);
 		color: var(--color-on-surface-light);
-		box-shadow: none;
 	}
 
-	.secondary {
-		background: var(--color-surface-muted);
-		color: var(--color-on-surface-dark);
+	.secondary,
+	.button-light {
+		background: var(--color-on-surface-light);
+		color: var(--color-text);
+	}
+
+	.primary:hover,
+	.button-dark:hover,
+	.button:hover {
+		background: var(--color-on-surface-light);
+		color: var(--color-text);
+	}
+
+	.secondary:hover,
+	.button-light:hover {
+		background: var(--color-primary);
+		color: var(--color-on-surface-light);
+	}
+
+	.hero-actions .button:nth-child(even),
+	.form-next-buttons .button:nth-child(even),
+	.page-hero .button:nth-of-type(even) {
+		background: var(--color-on-surface-light);
+		color: var(--color-text);
+	}
+
+	.hero-actions .button:nth-child(odd),
+	.form-next-buttons .button:nth-child(odd),
+	.page-hero .button:nth-of-type(odd) {
+		background: var(--color-primary);
+		color: var(--color-on-surface-light);
+	}
+
+	.hero-actions .button:nth-child(even):hover,
+	.form-next-buttons .button:nth-child(even):hover,
+	.page-hero .button:nth-of-type(even):hover {
+		background: var(--color-primary);
+		color: var(--color-on-surface-light);
+	}
+
+	.hero-actions .button:nth-child(odd):hover,
+	.form-next-buttons .button:nth-child(odd):hover,
+	.page-hero .button:nth-of-type(odd):hover {
+		background: var(--color-on-surface-light);
+		color: var(--color-text);
+	}
+
+	.cta-actions .button {
+		background: var(--color-primary);
+		color: var(--color-on-surface-light);
+	}
+
+	.cta-actions .button:hover {
+		background: var(--color-on-surface-light);
+		color: var(--color-text);
 	}
 
 	.cta-band {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
 		text-align: center;
 		background: var(--color-strong);
 		color: var(--color-on-surface-light);
-		border-radius: 8px;
-		padding: 56px 24px;
+		border: 1px solid var(--color-border);
+		border-radius: 20px;
+		min-height: 360px;
+		padding: 88px 32px;
 		margin-top: 40px;
+		box-shadow: var(--shadow-inset-box);
 	}
 
 	.cta-band h2,
 	.cta-band p {
 		color: var(--color-on-surface-light);
+		max-width: 760px;
+		margin-left: auto;
+		margin-right: auto;
 	}
 
 	.cta-band .button {
 		margin-top: 20px;
-		background: var(--color-on-surface-light);
-		color: var(--color-on-surface-dark);
 		border: none;
 		outline: none;
+		background: var(--color-on-surface-light);
+		color: var(--color-text);
+	}
+
+	.cta-band .button:hover {
+		background: var(--color-primary);
+		color: var(--color-on-surface-light);
+	}
+
+	.card:not([class*='blog-card']),
+	.highlight,
+	.cta,
+	.thank-you-panel,
+	.mobile-nav {
+		box-shadow: var(--shadow-inset-box);
+	}
+
+	.blog-card {
+		box-shadow: var(--shadow-inset-box);
+	}
+
+	section:not(.form-hero):not(.form-section):not(.contact-section):not(.form-next-actions),
+	.card,
+	.cta,
+	.cta-band,
+	.highlight,
+	.thank-you-panel {
+		animation: scroll-rise both;
+		animation-timeline: view();
+		animation-range: entry 8% cover 28%;
+	}
+
+	@keyframes scroll-rise {
+		from {
+			opacity: 0;
+			transform: translateY(28px);
+		}
+
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		*,
+		*::before,
+		*::after {
+			animation-duration: 0.001ms !important;
+			animation-iteration-count: 1 !important;
+			scroll-behavior: auto !important;
+			transition-duration: 0.001ms !important;
+		}
 	}
 
 	.content-page {
@@ -464,7 +642,7 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 			border: none;
 			outline: none;
 			border-radius: 999px;
-			background: rgba(255, 255, 255, 0.04);
+			background: rgba(255, 253, 247, 0.04);
 			cursor: pointer;
 			overflow: hidden;
 		}
@@ -506,9 +684,15 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 			gap: 0.75rem;
 			margin-left: 0;
 			padding: 1.25rem;
-			border-radius: 8px;
+			border-radius: 20px;
 			background: rgba(17, 17, 17, 0.96);
 			box-shadow: 0 24px 48px rgba(0, 0, 0, 0.28);
+		}
+
+		.nav-sublink {
+			width: calc(100% - 24px);
+			background: rgba(84, 184, 237, 0.16);
+			font-size: 0.98rem;
 		}
 
 		.mobile-menu-toggle:checked ~ .mobile-nav {

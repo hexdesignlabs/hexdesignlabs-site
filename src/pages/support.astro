@@ -1,0 +1,116 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FormPageStyles from '../components/FormPageStyles.astro';
+
+const formsparkActionUrl =
+	import.meta.env.PUBLIC_FORMSPARK_SUPPORT_ENDPOINT ?? 'https://submit-form.com/cvnM7E8Cr';
+const turnstileSitekey = import.meta.env.PUBLIC_TURNSTILE_SITEKEY ?? '1x00000000000000000000AA';
+const redirectUrl = 'https://hexdesignlabs.com/support-request-received/';
+---
+
+<Layout title="Website Support Request" description="Submit a website support request to HEX Design Labs for content updates, website issues, form problems, broken links, and support plan help.">
+	<main class="form-page form-theme-red">
+		<section class="form-hero">
+			<h1>Website Support Request</h1>
+			<p>Use this form to send website support details, update requests, broken links, or issues that need review for an active site.</p>
+		</section>
+
+		<section class="form-section">
+			<div class="hex-form">
+				<h2>Submit a Support Ticket</h2>
+				<p class="form-intro">
+					Share the site, page, and request details so HEX can review the support need and follow up with next steps.
+				</p>
+				<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+				<form action={formsparkActionUrl} method="POST">
+					<input type="hidden" name="_redirect" value={redirectUrl}>
+					<input type="hidden" name="_append" value="false">
+					<div class="form-row">
+						<div class="form-group">
+							<label for="first_name">First Name</label>
+							<input type="text" id="first_name" name="first_name" autocomplete="given-name" required>
+						</div>
+						<div class="form-group">
+							<label for="last_name">Last Name</label>
+							<input type="text" id="last_name" name="last_name" autocomplete="family-name" required>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group">
+							<label for="company_name">Company Name</label>
+							<input type="text" id="company_name" name="company_name" autocomplete="organization" required>
+						</div>
+						<div class="form-group">
+							<label for="email">Email Address</label>
+							<input type="email" id="email" name="email" autocomplete="email" required>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group">
+							<label for="phone">Phone Number</label>
+							<input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="Optional">
+						</div>
+						<div class="form-group">
+							<label for="website_url">Website URL</label>
+							<input type="url" id="website_url" name="website_url" placeholder="https://example.com" required>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group">
+							<label for="client_type">Client Type</label>
+							<select id="client_type" name="client_type" required>
+								<option value="" disabled selected>Select client type</option>
+								<option>Website Support Plan Subscriber</option>
+								<option>Established Client</option>
+								<option>New Client</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="request_type">Request Type</label>
+							<select id="request_type" name="request_type" required>
+								<option value="" disabled selected>Select request type</option>
+								<option>Website Content Update/Change (images, pages, copy, etc.)</option>
+								<option>Website Issue / error</option>
+								<option>Form Issue / error</option>
+								<option>Broken Link or Page Error</option>
+								<option>New Website Design or Redesign</option>
+								<option>General Question</option>
+								<option>Other</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="request_details">Describe the issue or request</label>
+						<textarea id="request_details" name="request_details" rows="6" placeholder="Include what changed, what is not working, or what needs to be updated." required></textarea>
+					</div>
+					<div class="form-group">
+						<label for="related_page_url">Page URL related to request</label>
+						<input type="url" id="related_page_url" name="related_page_url" placeholder="Optional">
+					</div>
+					<!-- TODO: Enable attachment uploads after configuring Formspark's Uploadcare integration and adding an Uploadcare public key. -->
+					<div class="checkbox-group">
+						<label class="checkbox-label" for="support_consent">
+							<input type="checkbox" id="support_consent" name="support_consent" value="Accepted" required>
+							<span>We understand that support requests are reviewed during normal business hours and may be subject to our support plan limits or hourly billing.</span>
+						</label>
+					</div>
+					<div class="turnstile-wrap">
+						<div class="cf-turnstile" data-sitekey={turnstileSitekey} data-action="support" data-theme="light"></div>
+					</div>
+					<div class="form-submit">
+						<button type="submit" class="button primary">Submit Support Request</button>
+					</div>
+				</form>
+			</div>
+		</section>
+		<section class="form-next-actions" aria-labelledby="support-next-actions">
+			<h2 id="support-next-actions">Need a different path?</h2>
+			<p>Choose the form that best matches what you need HEX to review.</p>
+			<div class="form-next-buttons">
+				<a href="/contact" class="button secondary">Contact HEX</a>
+				<a href="/website-intake" class="button secondary">Start a Website Intake</a>
+			</div>
+		</section>
+	</main>
+	<FormPageStyles />
+</Layout>

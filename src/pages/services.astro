@@ -56,7 +56,25 @@ import Layout from '../layouts/Layout.astro';
 		<section class="cta-band">
 			<h2>Have a website project in mind?</h2>
 			<p>Send over what you are trying to fix, improve, or finally get online. HEX can help shape a sensible next step for website design, a website refresh, or ongoing website support.</p>
-			<a href="/contact" class="button">Request Website Help</a>
+			<div class="cta-actions">
+				<a href="/contact" class="button">contact us</a>
+				<a href="/support" class="button">client support request</a>
+				<a href="/website-intake" class="button">new website project</a>
+			</div>
 		</section>
 	</main>
 </Layout>
+
+<style>
+	.cta-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 14px;
+		justify-content: center;
+		margin-top: 20px;
+	}
+
+	.cta-actions .button {
+		margin-top: 0;
+	}
+</style>

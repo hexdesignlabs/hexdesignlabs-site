@@ -36,7 +36,8 @@ Build a custom-coded Astro site, deploy it safely through GitHub and Cloudflare 
 - The GitHub remote is configured as `https://github.com/hexdesignlabs/hexdesignlabs-site.git`.
 - The project has not been pushed to GitHub yet.
 - The contact form is Formspark/Turnstile-ready with development placeholders.
-- Formspark has been created and the local form endpoint is set to `https://submit-form.com/tVTMartFI`.
+- Formspark has been created and the local contact form endpoint is set to `https://submit-form.com/tVTMartFI`.
+- Support request and website intake Formspark endpoints have been created for the `/support/` and `/website-intake/` forms.
 - Cloudflare Turnstile has been created for the contact form, and the local public sitekey is set.
 - Decap setup can wait until that account/configuration is needed.
 
@@ -48,12 +49,15 @@ Current local environment values:
 
 ```bash
 PUBLIC_FORMSPARK_ACTION_URL=https://submit-form.com/tVTMartFI
+PUBLIC_FORMSPARK_CONTACT_ENDPOINT=https://submit-form.com/tVTMartFI
+PUBLIC_FORMSPARK_SUPPORT_ENDPOINT=https://submit-form.com/cvnM7E8Cr
+PUBLIC_FORMSPARK_WEBSITE_INTAKE_ENDPOINT=https://submit-form.com/DrBbqq9RL
 PUBLIC_TURNSTILE_SITEKEY=0x4AAAAAADHMiWGAEl9zW3nc
 ```
 
 Before Cloudflare Pages deployment:
 
-1. Add `PUBLIC_FORMSPARK_ACTION_URL` to Cloudflare Pages environment variables.
+1. Add `PUBLIC_FORMSPARK_ACTION_URL`, `PUBLIC_FORMSPARK_CONTACT_ENDPOINT`, `PUBLIC_FORMSPARK_SUPPORT_ENDPOINT`, and `PUBLIC_FORMSPARK_WEBSITE_INTAKE_ENDPOINT` to Cloudflare Pages environment variables.
 2. Add `PUBLIC_TURNSTILE_SITEKEY` to Cloudflare Pages environment variables.
 3. Confirm Formspark is configured to validate the Turnstile token server-side using the private Turnstile secret key.
 4. Test a real submission in a Cloudflare Pages preview before production launch.
