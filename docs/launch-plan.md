@@ -51,7 +51,7 @@ Current local environment values:
 PUBLIC_FORMSPARK_ACTION_URL=https://submit-form.com/tVTMartFI
 PUBLIC_FORMSPARK_CONTACT_ENDPOINT=https://submit-form.com/tVTMartFI
 PUBLIC_FORMSPARK_SUPPORT_ENDPOINT=https://submit-form.com/cvnM7E8Cr
-PUBLIC_FORMSPARK_WEBSITE_INTAKE_ENDPOINT=https://submit-form.com/DrBbqq9RL
+PUBLIC_FORMSPARK_WEBSITE_INTAKE_ENDPOINT=https://submit-form.com/DrBbpq9RL
 PUBLIC_TURNSTILE_SITEKEY=0x4AAAAAADHMiWGAEl9zW3nc
 ```
 
