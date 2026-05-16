@@ -32,19 +32,50 @@ import Layout from '../layouts/Layout.astro';
 			<p class="eyebrow">How We Work</p>
 			<h2>Simple process, useful outcomes.</h2>
 			<div class="grid">
-				<article class="card">
+				<article class="card process-card-red">
 					<h3>Clarify</h3>
 					<p>We define the website goal, audience, content needs, service information, and practical constraints before design starts.</p>
 				</article>
-				<article class="card">
+				<article class="card process-card-blue">
 					<h3>Create</h3>
 					<p>We design and build pages that feel credible, load cleanly, explain the business clearly, and guide visitors toward a reasonable next action.</p>
 				</article>
-				<article class="card">
+				<article class="card process-card-green">
 					<h3>Maintain</h3>
 					<p>We support content updates, improvements, and site care so the website has a practical path forward after launch.</p>
 				</article>
 			</div>
 		</section>
+
+		<section class="cta-band">
+			<h2>Ready for a clearer small business website?</h2>
+			<p>Bring HEX into the conversation when your website needs stronger structure, sharper service pages, better content, or practical support after launch.</p>
+			<a href="/contact" class="button">Contact HEX</a>
+		</section>
 	</main>
 </Layout>
+
+<style>
+	.process-card-red,
+	.process-card-blue,
+	.process-card-green {
+		border: 0;
+	}
+
+	.process-card-red {
+		background: var(--color-strong);
+	}
+
+	.process-card-blue {
+		background: var(--color-surface);
+	}
+
+	.process-card-green {
+		background: var(--color-accent);
+	}
+
+	.process-card-red h3,
+	.process-card-red p {
+		color: var(--color-on-surface-light);
+	}
+</style>

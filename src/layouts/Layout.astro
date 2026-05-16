@@ -12,6 +12,15 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 <!doctype html>
 <html lang="en">
 	<head>
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-02102V6K3X"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'G-02102V6K3X');
+		</script>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -84,8 +93,6 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 						<a href="/contact" class="nav-link">Contact</a>
 						<a href="/support" class="nav-link nav-sublink">Support Request</a>
 						<a href="/website-intake" class="nav-link nav-sublink">Website Intake</a>
-						<a href="/privacy-policy" class="nav-link">Privacy Policy</a>
-						<a href="/terms" class="nav-link">Terms</a>
 					</nav>
 				</div>
 			</div>
@@ -94,10 +101,18 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 		<footer class="footer">
 			<div class="container">
 				<div class="footer-contact">
-					<p><strong>Email:</strong> info@hexdesignlabs.com</p>
+					<a href="/" class="footer-logo-link">
+						<img src={logoLight.src} alt="HEX Design Labs Logo" class="footer-logo" />
+					</a>
+					<p class="footer-email"><a href="mailto:info@hexdesignlabs.com">info@hexdesignlabs.com</a></p>
 					<p class="footer-links">
+						<a href="/">Home</a>
+						<a href="/about">About</a>
+						<a href="/services">Services</a>
+						<a href="/blog">Blog</a>
+						<a href="/contact">Contact</a>
 						<a href="/support">Support Request</a>
-						<a href="/website-intake">New Website Intake</a>
+						<a href="/website-intake">Website Intake</a>
 						<a href="/privacy-policy">Privacy Policy</a>
 						<a href="/terms">Terms</a>
 						<a href="https://www.google.com/search?q=HEX+Design+Labs" target="_blank" rel="noopener noreferrer">Find HEX on Google</a>
@@ -293,14 +308,34 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 		margin: 0.5rem 0;
 	}
 
+	.footer-logo-link {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 0.75rem;
+		text-decoration: none;
+	}
+
+	.footer-logo {
+		height: 48px;
+		width: auto;
+	}
+
 	.footer a {
 		color: var(--color-on-surface-light);
-		font-weight: 600;
 		text-decoration: none;
 	}
 
 	.footer a:hover {
 		color: var(--color-accent);
+	}
+
+	.footer-email {
+		font-size: 1rem;
+	}
+
+	.footer-email a {
+		font-weight: 400;
 	}
 
 	.footer-links {
@@ -309,6 +344,11 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 		gap: 1rem;
 		justify-content: center;
 		margin-top: 1rem;
+		font-size: 0.88rem;
+	}
+
+	.footer-links a {
+		font-weight: 400;
 	}
 
 	.page {
@@ -502,7 +542,7 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 		text-align: center;
 		background: var(--color-strong);
 		color: var(--color-on-surface-light);
-		border: 1px solid var(--color-border);
+		border: 0;
 		border-radius: 20px;
 		min-height: 360px;
 		padding: 88px 32px;

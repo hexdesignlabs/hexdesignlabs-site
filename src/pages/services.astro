@@ -30,7 +30,7 @@ import Layout from '../layouts/Layout.astro';
 					<h3>Website Design</h3>
 					<p>Small business website design with clear structure, responsive layouts, brand-aligned visuals, service information, and customer paths that are easy to follow.</p>
 				</article>
-				<article class="card">
+				<article class="card service-card-red">
 					<h3>Website Refreshes</h3>
 					<p>Website refresh support for existing sites that need cleaner messaging, updated visuals, better page flow, revised content, or a more current first impression.</p>
 				</article>
@@ -38,7 +38,7 @@ import Layout from '../layouts/Layout.astro';
 					<h3>Website Management</h3>
 					<p>Ongoing website management for businesses that want help with content changes, updates, maintenance, routine checks, and small improvements after launch.</p>
 				</article>
-				<article class="card">
+				<article class="card service-card-blue">
 					<h3>Landing Pages</h3>
 					<p>Focused website pages for services, promotions, local campaigns, announcements, or new offers that need a clear place to send customers.</p>
 				</article>
@@ -46,7 +46,7 @@ import Layout from '../layouts/Layout.astro';
 					<h3>Content Support</h3>
 					<p>Website copy support for page planning, service descriptions, messaging cleanup, headings, calls to action, and clearer customer communication.</p>
 				</article>
-				<article class="card">
+				<article class="card service-card-green">
 					<h3>Marketing Design</h3>
 					<p>Digital graphics and supporting materials that keep your website, campaigns, social posts, and customer touchpoints feeling more aligned.</p>
 				</article>
@@ -76,5 +76,32 @@ import Layout from '../layouts/Layout.astro';
 
 	.cta-actions .button {
 		margin-top: 0;
+	}
+
+	.grid .card {
+		border: 0;
+	}
+
+	.service-card-red,
+	.service-card-blue,
+	.service-card-green {
+		border: 0;
+	}
+
+	.service-card-red {
+		background: var(--color-strong);
+	}
+
+	.service-card-blue {
+		background: var(--color-surface);
+	}
+
+	.service-card-green {
+		background: var(--color-accent);
+	}
+
+	.service-card-red h3,
+	.service-card-red p {
+		color: var(--color-on-surface-light);
 	}
 </style>
