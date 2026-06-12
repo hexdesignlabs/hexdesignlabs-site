@@ -1,10 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import backgroundPattern from '../assets/background.svg';
+import servicesHeroImage from '../assets/stock/photo-1502945015378-0e284ca1a5be.avif';
 ---
 
 <Layout title="Services" description="Small business website design, website refreshes, content updates, landing pages, ongoing website support, and practical website management from HEX Design Labs.">
 	<main class="page">
-		<section class="page-hero">
+		<section class="page-hero image-hero" style={`--hero-image: url(${servicesHeroImage.src}); --hero-position: center; --hero-tint: #54B8ED;`}>
+			<img class="hero-base-image" src={servicesHeroImage.src} alt="" loading="eager" fetchpriority="high">
+			<img class="hero-pattern-image" src={backgroundPattern.src} alt="" loading="eager" fetchpriority="high">
 			<p class="eyebrow">Services</p>
 			<h1>Website help for small businesses that need a clearer, easier-to-manage site.</h1>
 			<p class="lead">
@@ -80,6 +84,15 @@ import Layout from '../layouts/Layout.astro';
 
 	.grid .card {
 		border: 0;
+	}
+
+	.grid .card:not(.service-card-red):not(.service-card-blue):not(.service-card-green) {
+		background: var(--color-text);
+	}
+
+	.grid .card:not(.service-card-red):not(.service-card-blue):not(.service-card-green) h3,
+	.grid .card:not(.service-card-red):not(.service-card-blue):not(.service-card-green) p {
+		color: var(--color-on-surface-light);
 	}
 
 	.service-card-red,

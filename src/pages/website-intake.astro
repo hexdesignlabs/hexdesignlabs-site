@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import FormPageStyles from '../components/FormPageStyles.astro';
+import backgroundPattern from '../assets/background.svg';
+import intakeHeroImage from '../assets/stock/marvin-meyer-SYTO3xs06fU-unsplash.jpg';
 
 const formsparkActionUrl =
 	import.meta.env.PUBLIC_FORMSPARK_WEBSITE_INTAKE_ENDPOINT ?? 'https://submit-form.com/DrBbpq9RL';
@@ -10,7 +12,9 @@ const redirectUrl = 'https://hexdesignlabs.com/website-intake-received/';
 
 <Layout title="Website Design & Development Intake" description="Submit a new website project or website redesign intake to HEX Design Labs for scope review, questions, and next steps.">
 	<main class="form-page form-theme-green">
-		<section class="form-hero">
+		<section class="form-hero image-hero" style={`--hero-image: url(${intakeHeroImage.src}); --hero-position: center; --hero-tint: #DC4F41;`}>
+			<img class="hero-base-image" src={intakeHeroImage.src} alt="" loading="eager" fetchpriority="high">
+			<img class="hero-pattern-image" src={backgroundPattern.src} alt="" loading="eager" fetchpriority="high">
 			<h1>New Website Project Intake</h1>
 			<p>Share the early project details for a new website build or redesign so HEX can review scope, fit, timing, and next steps.</p>
 		</section>

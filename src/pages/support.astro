@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import FormPageStyles from '../components/FormPageStyles.astro';
+import backgroundPattern from '../assets/background.svg';
+import supportHeroImage from '../assets/stock/boliviainteligente-kECRXz0m42A-unsplash.jpeg';
 
 const formsparkActionUrl =
 	import.meta.env.PUBLIC_FORMSPARK_SUPPORT_ENDPOINT ?? 'https://submit-form.com/cvnM7E8Cr';
@@ -10,7 +12,9 @@ const redirectUrl = 'https://hexdesignlabs.com/support-request-received/';
 
 <Layout title="Website Support Request" description="Submit a website support request to HEX Design Labs for content updates, website issues, form problems, broken links, and support plan help.">
 	<main class="form-page form-theme-red">
-		<section class="form-hero">
+		<section class="form-hero image-hero support-hero" style={`--hero-image: url(${supportHeroImage.src}); --hero-position: center; --hero-tint: #ACBC3B;`}>
+			<img class="hero-base-image" src={supportHeroImage.src} alt="" loading="eager" fetchpriority="high">
+			<img class="hero-pattern-image" src={backgroundPattern.src} alt="" loading="eager" fetchpriority="high">
 			<h1>Website Support Request</h1>
 			<p>Use this form to send website support details, update requests, broken links, or issues that need review for an active site.</p>
 		</section>
@@ -114,3 +118,9 @@ const redirectUrl = 'https://hexdesignlabs.com/support-request-received/';
 	</main>
 	<FormPageStyles />
 </Layout>
+
+<style>
+	.support-hero {
+		justify-content: center;
+	}
+</style>

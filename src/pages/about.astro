@@ -1,10 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import backgroundPattern from '../assets/background.svg';
+import aboutHeroImage from '../assets/stock/kevin-matos-Nl_FMFpXo2g-unsplash.jpg';
+import aboutGuideImage from '../assets/stock/austin-distel-wD1LRb9OeEo-unsplash.jpg';
 ---
 
 <Layout title="About HEX Design Labs" description="Learn about HEX Design Labs, a small business website design and website support studio helping owners plan, refresh, update, and manage practical business websites.">
 	<main class="page">
-		<section class="page-hero">
+		<section class="page-hero image-hero" style={`--hero-image: url(${aboutHeroImage.src}); --hero-position: center; --hero-tint: #DC4F41;`}>
+			<img class="hero-base-image" src={aboutHeroImage.src} alt="" loading="eager" fetchpriority="high">
+			<img class="hero-pattern-image" src={backgroundPattern.src} alt="" loading="eager" fetchpriority="high">
 			<p class="eyebrow">About HEX</p>
 			<h1>Website design and support for businesses that need things handled with care.</h1>
 			<p class="lead">
@@ -25,6 +30,9 @@ import Layout from '../layouts/Layout.astro';
 			<div class="card accent-card">
 				<h3>What guides the work</h3>
 				<p>Clear messaging, responsive layouts, practical website support, dependable maintenance, and a low-drama process that keeps decisions moving.</p>
+				<div class="accent-card-media">
+					<img src={aboutGuideImage.src} alt="A team reviewing website project priorities on a whiteboard" loading="lazy">
+				</div>
 			</div>
 		</section>
 
@@ -77,5 +85,38 @@ import Layout from '../layouts/Layout.astro';
 	.process-card-red h3,
 	.process-card-red p {
 		color: var(--color-on-surface-light);
+	}
+
+	.accent-card {
+		overflow: hidden;
+	}
+
+	.accent-card-media {
+		position: relative;
+		width: 100%;
+		max-width: 100%;
+		aspect-ratio: 16 / 10;
+		margin-top: 22px;
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.accent-card-media::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		box-shadow:
+			inset 0 0 0 1px rgba(255, 253, 247, 0.18),
+			inset 14px 14px 30px rgba(17, 17, 17, 0.42),
+			inset -12px -12px 24px rgba(255, 253, 247, 0.12);
+		pointer-events: none;
+	}
+
+	.accent-card-media img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
 	}
 </style>

@@ -45,6 +45,49 @@
 		margin: 0 auto;
 	}
 
+	.form-hero.image-hero {
+		position: relative;
+		isolation: isolate;
+		max-width: 1120px;
+		min-height: clamp(380px, 52vh, 560px);
+		margin-bottom: 40px;
+		padding: clamp(80px, 12vw, 140px) clamp(24px, 6vw, 72px);
+		overflow: hidden;
+		border-radius: 20px;
+		background: var(--color-primary);
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+	}
+
+	.form-hero.image-hero::before,
+	.form-hero.image-hero::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+	}
+
+	.form-hero.image-hero::before {
+		z-index: 2;
+		background: var(--hero-tint, rgba(84, 184, 237, 0.68));
+		mix-blend-mode: multiply;
+		opacity: 1;
+		box-shadow:
+			inset 0 0 0 1px rgba(255, 253, 247, 0.1),
+			inset 18px 18px 42px rgba(17, 17, 17, 0.56),
+			inset -18px -18px 42px rgba(17, 17, 17, 0.28);
+	}
+
+	.form-hero.image-hero::after {
+		content: none;
+	}
+
+	.form-hero.image-hero > :not(img) {
+		position: relative;
+		z-index: 3;
+	}
+
 	.form-hero h1 {
 		font-size: clamp(3rem, 7vw, 5.8rem);
 		line-height: 1.06;
@@ -58,6 +101,11 @@
 		max-width: 700px;
 		margin: 0 auto;
 		color: var(--color-body);
+	}
+
+	.form-hero.image-hero h1,
+	.form-hero.image-hero p {
+		color: var(--color-on-surface-light);
 	}
 
 	.form-section {
@@ -119,7 +167,7 @@
 		width: 100%;
 		padding: 12px;
 		border: 1px solid var(--color-border);
-		border-radius: 20px;
+		border-radius: 10px;
 		font-family: 'Poppins', sans-serif;
 		font-size: 1rem;
 		background: var(--color-surface-muted);

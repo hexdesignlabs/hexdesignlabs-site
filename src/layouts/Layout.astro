@@ -1,5 +1,6 @@
 ---
 import logoLight from '../assets/2023 HEX Logo Icon First Light.svg';
+import backgroundPattern from '../assets/background.svg';
 
 const {
 	title = 'Small Business Website Design & Support | HEX Design Labs',
@@ -60,7 +61,7 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 		</script>
 		<title>{pageTitle}</title>
 	</head>
-	<body>
+	<body style={`--site-background-svg: url(${backgroundPattern.src});`}>
 		<!-- Google Tag Manager (noscript) -->
 		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NV9RV3QH"
 		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -365,6 +366,78 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 	.page-hero {
 		padding: 42px 0 72px;
 		max-width: 880px;
+	}
+
+	.page-hero.image-hero {
+		position: relative;
+		isolation: isolate;
+		max-width: 100%;
+		min-height: clamp(420px, 58vh, 620px);
+		margin-bottom: 40px;
+		padding: clamp(80px, 12vw, 140px) clamp(24px, 6vw, 72px);
+		overflow: hidden;
+		border-radius: 20px;
+		background: var(--color-primary);
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+	}
+
+	.page-hero.image-hero::before,
+	.page-hero.image-hero::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+	}
+
+	.page-hero.image-hero::before {
+		z-index: 2;
+		background: var(--hero-tint, rgba(84, 184, 237, 0.68));
+		mix-blend-mode: multiply;
+		opacity: 1;
+		box-shadow:
+			inset 0 0 0 1px rgba(255, 253, 247, 0.1),
+			inset 18px 18px 42px rgba(17, 17, 17, 0.56),
+			inset -18px -18px 42px rgba(17, 17, 17, 0.28);
+	}
+
+	.page-hero.image-hero::after {
+		content: none;
+	}
+
+	.image-hero .hero-base-image,
+	.image-hero .hero-pattern-image {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		pointer-events: none;
+	}
+
+	.image-hero .hero-base-image {
+		z-index: 0;
+		filter: grayscale(1);
+	}
+
+	.image-hero .hero-pattern-image {
+		z-index: 1;
+		opacity: 0.44;
+		filter: saturate(1.35) contrast(1.08);
+		mix-blend-mode: screen;
+		transform: scale(1.12) rotate(-7deg);
+	}
+
+	.page-hero.image-hero > :not(img) {
+		position: relative;
+		z-index: 3;
+	}
+
+	.page-hero.image-hero .eyebrow,
+	.page-hero.image-hero h1,
+	.page-hero.image-hero .lead {
+		color: var(--color-on-surface-light);
 	}
 
 	.page-hero.center {

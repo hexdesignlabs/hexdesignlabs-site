@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import backgroundPattern from '../assets/background.svg';
+import contactHeroImage from '../assets/stock/le-vu-vSlCNmZdjHQ-unsplash.jpg';
 
 const formsparkActionUrl =
 	import.meta.env.PUBLIC_FORMSPARK_CONTACT_ENDPOINT ??
@@ -11,7 +13,9 @@ const redirectUrl = 'https://hexdesignlabs.com/thank-you/';
 
 <Layout title="Contact Us" description="Contact HEX Design Labs for small business website design, website refreshes, website support, content updates, and practical website management help.">
 	<main class="contact">
-		<section class="hero">
+		<section class="hero image-hero" style={`--hero-image: url(${contactHeroImage.src}); --hero-position: center; --hero-tint: #54B8ED;`}>
+			<img class="hero-base-image" src={contactHeroImage.src} alt="" loading="eager" fetchpriority="high">
+			<img class="hero-pattern-image" src={backgroundPattern.src} alt="" loading="eager" fetchpriority="high">
 			<h1>Get in Touch</h1>
 			<p>Ready to build, refresh, update, or better manage your small business website? Share what you need help with and HEX will review the next practical step.</p>
 		</section>
@@ -97,12 +101,60 @@ const redirectUrl = 'https://hexdesignlabs.com/thank-you/';
 		margin: 0 auto;
 	}
 
+	.hero.image-hero {
+		position: relative;
+		isolation: isolate;
+		max-width: 1120px;
+		min-height: clamp(380px, 52vh, 560px);
+		margin-bottom: 40px;
+		padding: clamp(80px, 12vw, 140px) clamp(24px, 6vw, 72px);
+		overflow: hidden;
+		border-radius: 20px;
+		background: var(--color-primary);
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+	}
+
+	.hero.image-hero::before,
+	.hero.image-hero::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+	}
+
+	.hero.image-hero::before {
+		z-index: 2;
+		background: var(--hero-tint, rgba(84, 184, 237, 0.68));
+		mix-blend-mode: multiply;
+		opacity: 1;
+		box-shadow:
+			inset 0 0 0 1px rgba(255, 253, 247, 0.1),
+			inset 18px 18px 42px rgba(17, 17, 17, 0.56),
+			inset -18px -18px 42px rgba(17, 17, 17, 0.28);
+	}
+
+	.hero.image-hero::after {
+		content: none;
+	}
+
+	.hero.image-hero > :not(img) {
+		position: relative;
+		z-index: 3;
+	}
+
 	.hero h1 {
 		font-size: clamp(3rem, 7vw, 5.8rem);
 		line-height: 1.06;
 		margin: 0 0 24px;
 		letter-spacing: -0.06em;
 		color: var(--color-text);
+	}
+
+	.hero.image-hero h1,
+	.hero.image-hero p {
+		color: var(--color-on-surface-light);
 	}
 
 	.hero p {
@@ -163,7 +215,7 @@ const redirectUrl = 'https://hexdesignlabs.com/thank-you/';
 		width: 100%;
 		padding: 12px;
 		border: 1px solid var(--color-border);
-		border-radius: 20px;
+		border-radius: 10px;
 		font-family: 'Poppins', sans-serif;
 		font-size: 1rem;
 		background: var(--color-surface-muted);
