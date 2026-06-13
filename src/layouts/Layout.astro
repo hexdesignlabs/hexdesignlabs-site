@@ -1,6 +1,8 @@
 ---
 import logoLight from '../assets/2023 HEX Logo Icon First Light.svg';
 import backgroundPattern from '../assets/background.svg';
+import hexCursor from '../assets/hex cursor.svg';
+import hexCursorHover from '../assets/hex cursor hover.svg';
 
 const {
 	title = 'Small Business Website Design & Support | HEX Design Labs',
@@ -61,7 +63,7 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 		</script>
 		<title>{pageTitle}</title>
 	</head>
-	<body style={`--site-background-svg: url(${backgroundPattern.src});`}>
+	<body style={`--site-background-svg: url(${backgroundPattern.src}); --hex-cursor-dark: url("${hexCursor.src}") 0 0, auto; --hex-cursor-light: url("${hexCursorHover.src}") 0 0, auto;`}>
 		<!-- Google Tag Manager (noscript) -->
 		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NV9RV3QH"
 		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -125,6 +127,89 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 				</div>
 			</div>
 		</footer>
+		<script>
+			(() => {
+				const sectionSelector = [
+					'section:not(.form-section):not(.contact-section):not(.hero-shell):not(.page-hero):not(.form-hero):not(.hero.image-hero)'
+				].join(',');
+				const itemSelector = [
+					':scope > .eyebrow',
+					':scope > h1',
+					':scope > h2',
+					':scope > h3',
+					':scope > p',
+					':scope > .lead',
+					':scope > .section-intro',
+					':scope > .copy-stack',
+					':scope > .pill-grid',
+					':scope > .cta-actions',
+					':scope > .button',
+					':scope > a.button',
+					':scope > div > .eyebrow',
+					':scope > div > h1',
+					':scope > div > h2',
+					':scope > div > h3',
+					':scope > div > p',
+					':scope > div > .lead',
+					':scope > div > .section-intro',
+					':scope > div > .copy-stack',
+					':scope > div > .button',
+					':scope > div > a.button'
+				].join(',');
+				const revealSections = Array.from(document.querySelectorAll(sectionSelector))
+					.filter((section) => !section.closest('.form-section, .contact-section'));
+				const revealStyles = ['reveal-rise', 'reveal-slide-left', 'reveal-slide-right'];
+
+				if (!revealSections.length) {
+					return;
+				}
+
+				document.documentElement.classList.add('reveal-motion');
+
+				revealSections.forEach((section, sectionIndex) => {
+					const items = Array.from(section.querySelectorAll(itemSelector));
+
+					if (!items.length) {
+						return;
+					}
+
+					section.classList.add('reveal-section', revealStyles[sectionIndex % revealStyles.length]);
+					if (section.matches('.highlight, .cta, .cta-band')) {
+						section.classList.add('cta-card-reveal');
+					}
+
+					items.forEach((item, itemIndex) => {
+						item.classList.add('reveal-item');
+						item.style.setProperty('--reveal-delay', `${Math.min(itemIndex * 110, 440)}ms`);
+					});
+				});
+
+				if (!('IntersectionObserver' in window)) {
+					revealSections.forEach((section) => section.classList.add('is-visible'));
+					return;
+				}
+
+				const revealObserver = new IntersectionObserver(
+					(entries, observer) => {
+						entries.forEach((entry) => {
+							if (!entry.isIntersecting) {
+								return;
+							}
+
+							entry.target.classList.add('is-visible');
+							observer.unobserve(entry.target);
+						});
+					},
+					{
+						rootMargin: '0px 0px -12% 0px',
+						threshold: 0.08
+					}
+				);
+
+				revealSections.forEach((section) => revealObserver.observe(section));
+			})();
+
+		</script>
 	</body>
 </html>
 
@@ -172,6 +257,7 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 		height: 100%;
 		background: var(--color-bg);
 		overflow-x: hidden;
+		cursor: var(--hex-cursor-dark);
 	}
 
 	body {
@@ -179,6 +265,37 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 		display: flex;
 		flex-direction: column;
 		font-family: 'Poppins', sans-serif;
+		cursor: var(--hex-cursor-dark);
+	}
+
+	.header,
+	.footer,
+	.hero-shell,
+	.image-hero,
+	.highlight,
+	.cta,
+	.cta-band,
+	.form-next-actions,
+	.thank-you-panel,
+	.card:is(.process-card-red, .blog-card, .service-card-red) {
+		cursor: var(--hex-cursor-light);
+	}
+
+	a,
+	button,
+	label,
+	summary,
+	[role='button'],
+	input[type='button'],
+	input[type='submit'],
+	input[type='reset'] {
+		cursor: inherit !important;
+	}
+
+	input,
+	textarea,
+	select {
+		cursor: text;
 	}
 
 	body > main,
@@ -383,6 +500,30 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 		justify-content: flex-end;
 	}
 
+	.page-hero.image-hero.full-bleed-hero {
+		width: 100vw;
+		max-width: 100vw;
+		min-height: calc(100vh - 72px);
+		min-height: calc(100svh - 72px);
+		margin: -72px calc(50% - 50vw) 72px;
+		padding:
+			clamp(84px, 9vh, 116px)
+			max(24px, calc((100vw - 1120px) / 2 + 24px))
+			clamp(96px, 10vw, 140px);
+		border-radius: 0;
+	}
+
+	.page-hero.image-hero.full-bleed-hero .lead {
+		width: fit-content;
+		padding: 18px 22px;
+		border-radius: 16px;
+		background: rgba(17, 17, 17, 0.8);
+	}
+
+	.page-hero.image-hero.full-bleed-hero h1 {
+		letter-spacing: -0.015em;
+	}
+
 	.page-hero.image-hero::before,
 	.page-hero.image-hero::after {
 		content: '';
@@ -443,6 +584,69 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 	.page-hero.center {
 		text-align: center;
 		margin: 0 auto;
+	}
+
+	.page-hero .eyebrow,
+	.form-hero .eyebrow,
+	.hero.image-hero .eyebrow {
+		animation: copy-rise 1280ms cubic-bezier(0.22, 1, 0.36, 1) both;
+	}
+
+	.page-hero h1,
+	.form-hero h1,
+	.hero.image-hero h1 {
+		animation: headline-slide 1640ms 120ms cubic-bezier(0.22, 1, 0.36, 1) both;
+	}
+
+	.page-hero .lead,
+	.page-hero > p:not(.eyebrow),
+	.form-hero > p:not(.eyebrow),
+	.hero.image-hero > p:not(.eyebrow) {
+		animation: copy-rise 1520ms 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+	}
+
+	.page-hero .button,
+	.form-hero .button,
+	.hero.image-hero .button {
+		animation: copy-rise 1520ms 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+	}
+
+	.image-hero .hero-pattern-image {
+		animation: hero-background-drift 36s ease-in-out infinite alternate;
+	}
+
+	@keyframes copy-rise {
+		0% {
+			opacity: 0;
+			transform: translateY(18px);
+		}
+
+		100% {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes headline-slide {
+		0% {
+			opacity: 0;
+			transform: translateX(-42px);
+		}
+
+		100% {
+			opacity: 1;
+			transform: translateX(0);
+		}
+	}
+
+	@keyframes hero-background-drift {
+		0% {
+			transform: scale(1.12) rotate(-7deg) translate3d(-1%, -1%, 0);
+		}
+
+		100% {
+			transform: scale(1.16) rotate(-5deg) translate3d(1%, 1%, 0);
+		}
 	}
 
 	.eyebrow {
@@ -518,6 +722,24 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 		padding: 28px;
 	}
 
+	.grid .card,
+	.cards .card {
+		backface-visibility: hidden;
+		transform: translateY(0);
+		transform-origin: center;
+		transition:
+			transform 360ms cubic-bezier(0.22, 1, 0.36, 1),
+			box-shadow 520ms cubic-bezier(0.22, 1, 0.36, 1),
+			background-color 260ms ease,
+			color 260ms ease;
+		will-change: transform;
+	}
+
+	.grid .card:hover,
+	.cards .card:hover {
+		transform: translateY(-12px);
+	}
+
 	.accent-card {
 		background: var(--color-surface);
 		border: 0;
@@ -565,12 +787,14 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 	.button:hover {
 		background: var(--color-on-surface-light);
 		color: var(--color-text);
+		cursor: var(--hex-cursor-dark) !important;
 	}
 
 	.secondary:hover,
 	.button-light:hover {
 		background: var(--color-primary);
 		color: var(--color-on-surface-light);
+		cursor: var(--hex-cursor-light) !important;
 	}
 
 	.hero-actions .button:nth-child(even),
@@ -592,6 +816,7 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 	.page-hero .button:nth-of-type(even):hover {
 		background: var(--color-primary);
 		color: var(--color-on-surface-light);
+		cursor: var(--hex-cursor-light) !important;
 	}
 
 	.hero-actions .button:nth-child(odd):hover,
@@ -599,6 +824,7 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 	.page-hero .button:nth-of-type(odd):hover {
 		background: var(--color-on-surface-light);
 		color: var(--color-text);
+		cursor: var(--hex-cursor-dark) !important;
 	}
 
 	.cta-actions .button {
@@ -609,6 +835,7 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 	.cta-actions .button:hover {
 		background: var(--color-on-surface-light);
 		color: var(--color-text);
+		cursor: var(--hex-cursor-dark) !important;
 	}
 
 	.cta-band {
@@ -646,6 +873,12 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 	.cta-band .button:hover {
 		background: var(--color-primary);
 		color: var(--color-on-surface-light);
+		cursor: var(--hex-cursor-light) !important;
+	}
+
+	.cta .primary:hover,
+	.form-next-actions .button:hover {
+		cursor: var(--hex-cursor-light) !important;
 	}
 
 	.card:not([class*='blog-card']),
@@ -660,26 +893,84 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 		box-shadow: var(--shadow-inset-box);
 	}
 
-	section:not(.form-hero):not(.form-section):not(.contact-section):not(.form-next-actions),
-	.card,
-	.cta,
-	.cta-band,
-	.highlight,
-	.thank-you-panel {
-		animation: scroll-rise both;
-		animation-timeline: view();
-		animation-range: entry 8% cover 28%;
+	.reveal-section {
+		--reveal-x: 0;
+		--reveal-y: 76px;
 	}
 
-	@keyframes scroll-rise {
-		from {
-			opacity: 0;
-			transform: translateY(28px);
+	.reveal-slide-left {
+		--reveal-x: 124px;
+		--reveal-y: 0;
+	}
+
+	.reveal-slide-right {
+		--reveal-x: -124px;
+		--reveal-y: 0;
+	}
+
+	.cta-card-reveal {
+		transition:
+			opacity 760ms cubic-bezier(0.22, 1, 0.36, 1),
+			transform 760ms cubic-bezier(0.22, 1, 0.36, 1);
+		will-change: opacity, transform;
+	}
+
+	.reveal-motion .cta-card-reveal:not(.is-visible) {
+		opacity: 0;
+		transform: translateX(-160px);
+	}
+
+	.reveal-motion .cta-card-reveal.is-visible {
+		opacity: 1;
+		transform: translateX(0);
+		will-change: auto;
+	}
+
+	.reveal-item {
+		transition:
+			opacity 920ms cubic-bezier(0.22, 1, 0.36, 1),
+			transform 920ms cubic-bezier(0.22, 1, 0.36, 1);
+		transition-delay: var(--reveal-delay, 0ms);
+	}
+
+	.cta-card-reveal .reveal-item {
+		transition-delay: calc(var(--reveal-delay, 0ms) + 280ms);
+	}
+
+	.reveal-motion .reveal-section:not(.is-visible) .reveal-item {
+		opacity: 0;
+		transform: translate(var(--reveal-x), var(--reveal-y));
+		will-change: opacity, transform;
+	}
+
+	.reveal-motion .reveal-section.is-visible .reveal-item {
+		opacity: 1;
+		transform: translate(0, 0);
+		will-change: auto;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.reveal-item,
+		.reveal-motion .reveal-section:not(.is-visible) .reveal-item,
+		.reveal-motion .reveal-section.is-visible .reveal-item {
+			opacity: 1;
+			transform: none;
+			transition: none;
 		}
 
-		to {
+		.cta-card-reveal,
+		.reveal-motion .cta-card-reveal:not(.is-visible),
+		.reveal-motion .cta-card-reveal.is-visible {
 			opacity: 1;
-			transform: translateY(0);
+			transform: none;
+			transition: none;
+		}
+
+		.grid .card,
+		.cards .card,
+		.grid .card:hover,
+		.cards .card:hover {
+			transform: none;
 		}
 	}
 
@@ -845,6 +1136,15 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 
 		.page-hero {
 			padding: 32px 0 56px;
+		}
+
+		.page-hero.image-hero.full-bleed-hero {
+			margin-top: -40px;
+			margin-bottom: 56px;
+			padding:
+				clamp(72px, 10vh, 96px)
+				18px
+				clamp(72px, 16vw, 108px);
 		}
 	}
 </style>

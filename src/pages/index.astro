@@ -6,7 +6,7 @@ import Hero from '../components/Hero.astro';
 <Layout title="Website Design & Support for Business | HEX Design Labs" description="HEX Design Labs provides small business website design, website refreshes, website support, content updates, and practical website management help.">
 	<Hero />
 	<main class="home">
-		<section class="section">
+		<section class="section text-section text-section-rise">
 			<p class="eyebrow">What We Do</p>
 			<h2>Website design, website support, and practical management for small businesses that need things handled.</h2>
 			<p class="section-intro">
@@ -34,7 +34,7 @@ import Hero from '../components/Hero.astro';
 			</div>
 		</section>
 
-		<section class="highlight">
+		<section class="highlight text-section text-section-slide-left">
 			<div>
 				<p class="eyebrow">Website Management</p>
 				<h2>Your website should not become another thing you have to babysit.</h2>
@@ -46,7 +46,7 @@ import Hero from '../components/Hero.astro';
 			<a href="/services" class="button primary">View website support services</a>
 		</section>
 
-		<section class="section two-column">
+		<section class="section two-column text-section text-section-slide-right">
 			<div>
 				<p class="eyebrow">Website Help</p>
 				<h2>A clearer website can make everyday business conversations easier.</h2>
@@ -61,7 +61,7 @@ import Hero from '../components/Hero.astro';
 			</div>
 		</section>
 
-		<section class="section">
+		<section class="section text-section text-section-rise">
 			<p class="eyebrow">Who We Help</p>
 			<h2>Built for practical businesses that need clear, credible websites.</h2>
 			<p class="section-intro">
@@ -86,7 +86,7 @@ import Hero from '../components/Hero.astro';
 			</div>
 		</section>
 
-		<section class="section two-column">
+		<section class="section two-column text-section text-section-slide-left">
 			<div>
 				<p class="eyebrow">Ongoing Care</p>
 				<h2>Website support does not have to mean starting over every time.</h2>
@@ -252,10 +252,10 @@ import Hero from '../components/Hero.astro';
 		padding: 28px;
 		display: flex;
 		flex-direction: column;
-		align-items: center;
+		align-items: flex-start;
 		gap: 16px;
 		color: var(--color-text);
-		text-align: center;
+		text-align: left;
 		text-decoration: none;
 		transition: background 0.25s ease, box-shadow 0.25s ease, color 0.25s ease, transform 0.25s ease;
 	}
@@ -272,36 +272,6 @@ import Hero from '../components/Hero.astro';
 		background: var(--color-accent);
 	}
 
-	.card:hover {
-		background: var(--color-text);
-		color: var(--color-on-surface-light);
-		animation: card-bounce 0.48s ease;
-	}
-
-	.card:hover h3,
-	.card:hover p,
-	.card:hover .card-link {
-		color: var(--color-on-surface-light);
-	}
-
-	@keyframes card-bounce {
-		0% {
-			transform: translateY(0);
-		}
-
-		45% {
-			transform: translateY(-10px);
-		}
-
-		70% {
-			transform: translateY(3px);
-		}
-
-		100% {
-			transform: translateY(-6px);
-		}
-	}
-
 	.card p {
 		font-weight: 400;
 	}
@@ -314,10 +284,6 @@ import Hero from '../components/Hero.astro';
 
 	.card .card-link {
 		color: var(--color-text);
-	}
-
-	.card:hover .card-link {
-		color: var(--color-on-surface-light);
 	}
 
 	.two-column {
@@ -357,15 +323,25 @@ import Hero from '../components/Hero.astro';
 	}
 
 	.pill-grid span {
+		--pill-color: var(--color-surface);
+		--pill-stagger: 0%;
 		background: transparent;
-		border: 2px solid var(--color-strong);
+		border: 2px solid var(--pill-color);
 		border-radius: 999px;
 		padding: 10px 16px;
 		font-weight: 600;
-		color: var(--color-strong);
+		color: var(--pill-color);
 		animation: pill-slide-in both;
 		animation-timeline: view();
-		animation-range: entry 6% cover 22%;
+		animation-range: entry calc(4% + var(--pill-stagger)) cover calc(38% + var(--pill-stagger));
+	}
+
+	.pill-grid span:nth-child(3n + 2) {
+		--pill-stagger: 4%;
+	}
+
+	.pill-grid span:nth-child(3n) {
+		--pill-stagger: 8%;
 	}
 
 	@keyframes pill-slide-in {

@@ -1,12 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import backgroundPattern from '../assets/background.svg';
-import blogHeroImage from '../assets/stock/growtika-nGoCBxiaRO0-unsplash.jpg';
+import blogHeroImage from '../assets/stock/growtika-nGoCBxiaRO0-unsplash.webp';
 ---
 
 <Layout title="Blog" description="Read practical website design, website support, website management, and small business marketing notes from HEX Design Labs.">
 	<main class="page">
-		<section class="page-hero image-hero" style={`--hero-image: url(${blogHeroImage.src}); --hero-position: center; --hero-tint: #ACBC3B;`}>
+		<section class="page-hero image-hero full-bleed-hero" style={`--hero-image: url(${blogHeroImage.src}); --hero-position: center; --hero-tint: #ACBC3B;`}>
 			<img class="hero-base-image" src={blogHeroImage.src} alt="" loading="eager" fetchpriority="high">
 			<img class="hero-pattern-image" src={backgroundPattern.src} alt="" loading="eager" fetchpriority="high">
 			<p class="eyebrow">Blog</p>
