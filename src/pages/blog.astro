@@ -54,10 +54,17 @@ import blogHeroImage from '../assets/stock/growtika-nGoCBxiaRO0-unsplash.webp';
 	.blog-card h3,
 	.blog-card p {
 		color: var(--color-on-surface-light);
+		transition: color 0.25s ease;
 	}
 
 	.blog-card .eyebrow {
 		color: rgba(255, 253, 247, 0.82);
+	}
+
+	.blog-card:hover h3,
+	.blog-card:hover p,
+	.blog-card:hover .eyebrow {
+		color: var(--color-text);
 	}
 
 	.blog-card-red {
