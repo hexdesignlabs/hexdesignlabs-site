@@ -2,6 +2,21 @@ backend:
   name: github
   repo: hexdesignlabs/hexdesignlabs-site
   branch: development
+  # Cloudflare Pages does not provide Netlify's built-in GitHub OAuth proxy.
+  # These settings point Decap at this site's Cloudflare Pages Functions:
+  #   /api/auth     -> redirects editors to GitHub OAuth
+  #   /api/callback -> exchanges the OAuth code for a token and returns it to Decap
+  #
+  # Required Cloudflare setup:
+  # 1. Create a GitHub OAuth App.
+  # 2. Set Homepage URL to https://hexdesignlabs.com.
+  # 3. Set Authorization callback URL to https://hexdesignlabs.com.
+  #    GitHub accepts /api/callback as a subpath of this callback URL.
+  # 4. Add GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET to the Cloudflare Pages
+  #    project environment variables for Production and Preview.
+  site_domain: https://hexdesignlabs.com
+  base_url: https://hexdesignlabs.com
+  auth_endpoint: /api/auth
 
 media_folder: public/images/uploads
 public_folder: /images/uploads
