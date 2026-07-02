@@ -7,8 +7,10 @@ function missingEnvResponse(name, context) {
 	const detail = availableKeys.length
 		? `Available context.env keys: ${availableKeys.join(', ')}.`
 		: 'No context.env keys were available to this Pages Function.';
+	const guidance =
+		'This function is reading context.env. If other keys are listed, add this value to the same Pages project as a Preview runtime secret, not Production-only or build-only, then redeploy.';
 
-	return new Response(`Missing ${name} environment variable. ${detail}`, {
+	return new Response(`Missing ${name} environment variable. ${detail} ${guidance}`, {
 		headers: { 'content-type': 'text/plain;charset=UTF-8' },
 		status: 500,
 	});

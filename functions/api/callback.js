@@ -34,8 +34,10 @@ function missingEnvResponse(names, context) {
 	const detail = availableKeys.length
 		? `Available context.env keys: ${availableKeys.join(', ')}.`
 		: 'No context.env keys were available to this Pages Function.';
+	const guidance =
+		'This function is reading context.env. If other keys are listed, add these values to the same Pages project as Preview runtime secrets, not Production-only or build-only, then redeploy.';
 
-	return new Response(`Missing GitHub OAuth environment variables: ${names.join(', ')}. ${detail}`, {
+	return new Response(`Missing GitHub OAuth environment variables: ${names.join(', ')}. ${detail} ${guidance}`, {
 		headers: { 'content-type': 'text/plain;charset=UTF-8' },
 		status: 500,
 	});

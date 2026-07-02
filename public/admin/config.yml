@@ -12,8 +12,10 @@ backend:
   # 2. Set Homepage URL to https://development.hexdesignlabs-site.pages.dev.
   # 3. Set Authorization callback URL to https://development.hexdesignlabs-site.pages.dev.
   #    GitHub accepts /api/callback as a subpath of this callback URL.
-  # 4. Add GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET to the Cloudflare Pages
-  #    project environment variables for Preview.
+  # 4. Add GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET as encrypted runtime
+  #    secrets in Cloudflare Pages > Settings > Variables and Secrets for the
+  #    Preview environment, then redeploy. Build-only/public variables are not
+  #    enough; the Pages Function must see them on context.env at runtime.
   site_domain: https://development.hexdesignlabs-site.pages.dev
   base_url: https://development.hexdesignlabs-site.pages.dev
   auth_endpoint: /api/auth
