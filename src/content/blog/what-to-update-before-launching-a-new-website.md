@@ -12,7 +12,7 @@ tags:
   - Website Launch
   - Small Business
   - Content
-draft: true
+draft: false
 ---
 
 Launching a new website is exciting, but the last stretch is where small details tend to matter most. Before the site goes live, it is worth slowing down long enough to make sure the pages answer practical customer questions, the forms work, and the basic search signals are in place.
