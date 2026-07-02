@@ -1,15 +1,18 @@
 ---
 title: What to update before launching a new website
-description: A practical checklist for website content, contact forms, page structure, search basics, and final review before a small business website goes live.
+description: A practical checklist for website content, contact forms, page
+  structure, search basics, and final review before a small business website
+  goes live.
 pubDate: 2026-05-01T09:00:00.000Z
 author: HEX Design Labs
 image: /images/uploads/marvin-meyer-SYTO3xs06fU-unsplash.jpg
-imageAlt: Overhead workspace with laptops, phones, notebooks, and project planning materials.
+imageAlt: Overhead workspace with laptops, phones, notebooks, and project
+  planning materials.
 tags:
   - Website Launch
   - Small Business
   - Content
-draft: false
+draft: true
 ---
 
 Launching a new website is exciting, but the last stretch is where small details tend to matter most. Before the site goes live, it is worth slowing down long enough to make sure the pages answer practical customer questions, the forms work, and the basic search signals are in place.
