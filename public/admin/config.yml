@@ -1,0 +1,27 @@
+backend:
+  name: github
+  repo: hexdesignlabs/hexdesignlabs-site
+  branch: development
+
+media_folder: public/images/uploads
+public_folder: /images/uploads
+
+collections:
+  - name: blog
+    label: Blog
+    folder: src/content/blog
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: text }
+      - { label: Publish Date, name: pubDate, widget: datetime }
+      - { label: Updated Date, name: updatedDate, widget: datetime, required: false }
+      - { label: Author, name: author, widget: string, default: HEX Design Labs }
+      - { label: Featured Image, name: image, widget: image }
+      - { label: Featured Image Alt Text, name: imageAlt, widget: string }
+      - { label: Tags, name: tags, widget: list, required: false }
+      - { label: Draft, name: draft, widget: boolean, default: false }
+      - { label: Body, name: body, widget: markdown }

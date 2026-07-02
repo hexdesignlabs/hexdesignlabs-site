@@ -1,7 +1,14 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import backgroundPattern from '../assets/background.svg';
 import blogHeroImage from '../assets/stock/growtika-nGoCBxiaRO0-unsplash.webp';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const blogCardClasses = ['blog-card-red', 'blog-card-green', 'blog-card-blue'];
 ---
 
 <Layout title="Blog" description="Read practical website design, website support, website management, and small business marketing notes from HEX Design Labs.">
@@ -17,23 +24,43 @@ import blogHeroImage from '../assets/stock/growtika-nGoCBxiaRO0-unsplash.webp';
 		</section>
 
 		<section class="section">
-			<div class="grid">
-				<article class="card blog-card blog-card-red">
+			{posts.length > 0 ? (
+				<div class="grid blog-grid">
+					{posts.map((post, index) => {
+						const slug = post.id.replace(/\.(md|mdx)$/, '');
+						const tags = post.data.tags ?? [];
+						const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
+							year: 'numeric',
+							month: 'long',
+							day: 'numeric',
+						});
+
+						return (
+							<a class={`card blog-card ${blogCardClasses[index % blogCardClasses.length]}`} href={`/blog/${slug}`}>
+								<span class="blog-card-image-frame">
+									<img src={post.data.image} alt={post.data.imageAlt} loading="lazy">
+								</span>
+								<span class="blog-card-content">
+									<span class="post-date">{formattedDate}</span>
+									<h3>{post.data.title}</h3>
+									<span class="blog-card-description">{post.data.description}</span>
+									{tags.length > 0 && (
+										<span class="tag-list" aria-label="Tags">
+											{tags.map((tag) => <span>{tag}</span>)}
+										</span>
+									)}
+								</span>
+							</a>
+						);
+					})}
+				</div>
+			) : (
+				<div class="empty-blog">
 					<p class="eyebrow">Coming Soon</p>
-					<h3>What to update before launching a new website</h3>
-					<p>A practical checklist for website content, contact forms, page structure, search basics, and final review before a small business website goes live.</p>
-				</article>
-				<article class="card blog-card blog-card-green">
-					<p class="eyebrow">Coming Soon</p>
-					<h3>When a website refresh is enough</h3>
-					<p>How to think through a website refresh, targeted content updates, and design improvements before deciding whether a full rebuild is needed.</p>
-				</article>
-				<article class="card blog-card blog-card-blue">
-					<p class="eyebrow">Coming Soon</p>
-					<h3>Why website maintenance matters</h3>
-					<p>The small recurring website support tasks that help a business site stay more current, useful, and easier to manage over time.</p>
-				</article>
-			</div>
+					<h2>Blog posts are on the way.</h2>
+					<p>New practical website design, support, and maintenance notes will appear here once they are published.</p>
+				</div>
+			)}
 		</section>
 
 		<section class="cta-band">
@@ -46,25 +73,99 @@ import blogHeroImage from '../assets/stock/growtika-nGoCBxiaRO0-unsplash.webp';
 
 <style>
 	.blog-card {
+		display: grid;
+		grid-template-rows: auto 1fr;
+		gap: 22px;
 		border: none;
 		outline: none;
 		background: var(--blog-card-color);
+		text-decoration: none;
+		min-height: 520px;
+	}
+
+	.blog-grid {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.blog-card-image-frame {
+		display: block;
+		position: relative;
+		overflow: hidden;
+		aspect-ratio: 1;
+		border-radius: 20px;
+		background: rgba(255, 253, 247, 0.16);
+		box-shadow: var(--shadow-inset-box);
+	}
+
+	.blog-card-image-frame::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		box-shadow: var(--shadow-inset-box);
+		pointer-events: none;
+	}
+
+	.blog-card-image-frame img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
+	}
+
+	.blog-card-content {
+		display: flex;
+		flex-direction: column;
+		gap: 14px;
 	}
 
 	.blog-card h3,
-	.blog-card p {
+	.blog-card p,
+	.blog-card span {
 		color: var(--color-on-surface-light);
 		transition: color 0.25s ease;
 	}
 
-	.blog-card .eyebrow {
+	.blog-card .post-date {
+		font-size: 0.88rem;
+		font-weight: 700;
+	}
+
+	.blog-card-description {
+		font-size: 1rem;
+		font-weight: 400;
+		line-height: 1.7;
+	}
+
+	.blog-card .eyebrow,
+	.blog-card .post-date {
 		color: rgba(255, 253, 247, 0.82);
 	}
 
 	.blog-card:hover h3,
 	.blog-card:hover p,
+	.blog-card:hover span,
 	.blog-card:hover .eyebrow {
 		color: var(--color-text);
+	}
+
+	.blog-card .tag-list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		margin-top: auto;
+	}
+
+	.blog-card .tag-list span {
+		display: inline-flex;
+		width: fit-content;
+		border-radius: 999px;
+		padding: 6px 10px;
+		background: rgba(255, 253, 247, 0.18);
+		font-size: 0.78rem;
+		font-weight: 700;
+		line-height: 1;
 	}
 
 	.blog-card-red {
@@ -77,5 +178,27 @@ import blogHeroImage from '../assets/stock/growtika-nGoCBxiaRO0-unsplash.webp';
 
 	.blog-card-blue {
 		--blog-card-color: #54B8ED;
+	}
+
+	.empty-blog {
+		max-width: 760px;
+		margin: 0 auto;
+		text-align: center;
+	}
+
+	@media (max-width: 900px) {
+		.blog-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (max-width: 640px) {
+		.blog-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.blog-card {
+			min-height: auto;
+		}
 	}
 </style>
