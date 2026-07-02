@@ -31,12 +31,13 @@ export async function onRequest(context) {
 	redirectUrl.searchParams.set('redirect_uri', `${url.origin}/api/callback`);
 	redirectUrl.searchParams.set('scope', 'repo user');
 	redirectUrl.searchParams.set('state', state);
+	const stateCookie = `decap_oauth_state=${state}; HttpOnly; Secure; SameSite=Lax; Path=/api; Max-Age=600`;
 
-	const response = Response.redirect(redirectUrl.href, 302);
-	response.headers.set(
-		'Set-Cookie',
-		`decap_oauth_state=${state}; HttpOnly; Secure; SameSite=Lax; Path=/api; Max-Age=600`
-	);
-
-	return response;
+	return new Response(null, {
+		status: 302,
+		headers: {
+			Location: redirectUrl.href,
+			'Set-Cookie': stateCookie,
+		},
+	});
 }

@@ -101,23 +101,19 @@ export async function onRequest(context) {
 			});
 		}
 
-		const successResponse = new Response(
+		return new Response(
 			renderBody('success', {
 				token: result.access_token,
 				provider: 'github',
 			}),
 			{
-				headers: { 'content-type': 'text/html;charset=UTF-8' },
+				headers: {
+					'content-type': 'text/html;charset=UTF-8',
+					'Set-Cookie': 'decap_oauth_state=; HttpOnly; Secure; SameSite=Lax; Path=/api; Max-Age=0',
+				},
 				status: 200,
 			}
 		);
-
-		successResponse.headers.append(
-			'Set-Cookie',
-			'decap_oauth_state=; HttpOnly; Secure; SameSite=Lax; Path=/api; Max-Age=0'
-		);
-
-		return successResponse;
 	} catch (error) {
 		console.error(error);
 
