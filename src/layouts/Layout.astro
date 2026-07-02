@@ -105,6 +105,7 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 			</div>
 		</header>
 		<slot />
+		<div class="footer-spacer" aria-hidden="true"></div>
 		<footer class="footer">
 			<div class="container">
 				<div class="footer-contact">
@@ -320,6 +321,11 @@ const pageTitle = title.includes('HEX Design Labs') ? title : `${title} | HEX De
 		color: var(--color-on-surface-light);
 		padding: 2rem 0;
 		margin-top: auto;
+	}
+
+	.footer-spacer {
+		flex: 0 0 50px;
+		height: 50px;
 	}
 
 	.container {
