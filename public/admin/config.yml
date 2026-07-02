@@ -7,15 +7,15 @@ backend:
   #   /api/auth     -> redirects editors to GitHub OAuth
   #   /api/callback -> exchanges the OAuth code for a token and returns it to Decap
   #
-  # Required Cloudflare setup:
+  # Development preview testing setup:
   # 1. Create a GitHub OAuth App.
-  # 2. Set Homepage URL to https://hexdesignlabs.com.
-  # 3. Set Authorization callback URL to https://hexdesignlabs.com.
+  # 2. Set Homepage URL to https://development.hexdesignlabs-site.pages.dev.
+  # 3. Set Authorization callback URL to https://development.hexdesignlabs-site.pages.dev.
   #    GitHub accepts /api/callback as a subpath of this callback URL.
   # 4. Add GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET to the Cloudflare Pages
-  #    project environment variables for Production and Preview.
-  site_domain: https://hexdesignlabs.com
-  base_url: https://hexdesignlabs.com
+  #    project environment variables for Preview.
+  site_domain: https://development.hexdesignlabs-site.pages.dev
+  base_url: https://development.hexdesignlabs-site.pages.dev
   auth_endpoint: /api/auth
 
 media_folder: public/images/uploads
