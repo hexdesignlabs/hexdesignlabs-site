@@ -25,15 +25,34 @@ function getCookie(request, name) {
 	return cookie ? decodeURIComponent(cookie.slice(name.length + 1)) : undefined;
 }
 
-export async function onRequest({ request, env }) {
-	const clientId = env.GITHUB_CLIENT_ID;
-	const clientSecret = env.GITHUB_CLIENT_SECRET;
+function getEnvVar(context, name) {
+	return context.env?.[name];
+}
+
+function missingEnvResponse(names, context) {
+	const availableKeys = Object.keys(context.env ?? {}).sort();
+	const detail = availableKeys.length
+		? `Available context.env keys: ${availableKeys.join(', ')}.`
+		: 'No context.env keys were available to this Pages Function.';
+
+	return new Response(`Missing GitHub OAuth environment variables: ${names.join(', ')}. ${detail}`, {
+		headers: { 'content-type': 'text/plain;charset=UTF-8' },
+		status: 500,
+	});
+}
+
+export async function onRequest(context) {
+	const { request } = context;
+	const clientId = getEnvVar(context, 'GITHUB_CLIENT_ID');
+	const clientSecret = getEnvVar(context, 'GITHUB_CLIENT_SECRET');
 
 	if (!clientId || !clientSecret) {
-		return new Response('Missing GitHub OAuth environment variables.', {
-			headers: { 'content-type': 'text/plain;charset=UTF-8' },
-			status: 500,
-		});
+		const missing = [
+			!clientId && 'GITHUB_CLIENT_ID',
+			!clientSecret && 'GITHUB_CLIENT_SECRET',
+		].filter(Boolean);
+
+		return missingEnvResponse(missing, context);
 	}
 
 	try {

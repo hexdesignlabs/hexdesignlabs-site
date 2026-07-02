@@ -1,10 +1,25 @@
-export async function onRequest({ request, env }) {
-	const clientId = env.GITHUB_CLIENT_ID;
+function getEnvVar(context, name) {
+	return context.env?.[name];
+}
+
+function missingEnvResponse(name, context) {
+	const availableKeys = Object.keys(context.env ?? {}).sort();
+	const detail = availableKeys.length
+		? `Available context.env keys: ${availableKeys.join(', ')}.`
+		: 'No context.env keys were available to this Pages Function.';
+
+	return new Response(`Missing ${name} environment variable. ${detail}`, {
+		headers: { 'content-type': 'text/plain;charset=UTF-8' },
+		status: 500,
+	});
+}
+
+export async function onRequest(context) {
+	const { request } = context;
+	const clientId = getEnvVar(context, 'GITHUB_CLIENT_ID');
 
 	if (!clientId) {
-		return new Response('Missing GITHUB_CLIENT_ID environment variable.', {
-			status: 500,
-		});
+		return missingEnvResponse('GITHUB_CLIENT_ID', context);
 	}
 
 	const url = new URL(request.url);
