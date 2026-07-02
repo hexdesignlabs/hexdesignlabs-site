@@ -10,12 +10,13 @@ backend:
   # Production setup:
   # 1. Create a GitHub OAuth App.
   # 2. Set Homepage URL to https://hexdesignlabs.com.
-  # 3. Set Authorization callback URL to https://hexdesignlabs.com.
-  #    GitHub accepts /api/callback as a subpath of this callback URL.
+  # 3. Set Authorization callback URL to https://hexdesignlabs.com/api/callback.
   # 4. Add GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET as encrypted runtime
   #    secrets in Cloudflare Pages > Settings > Variables and Secrets for the
   #    Production environment, then redeploy. Build-only/public variables are not
   #    enough; the Pages Function must see them on context.env at runtime.
+  # 5. Optional but recommended: set GITHUB_REDIRECT_URI to
+  #    https://hexdesignlabs.com/api/callback so the redirect URI is explicit.
   site_domain: https://hexdesignlabs.com
   base_url: https://hexdesignlabs.com
   auth_endpoint: /api/auth

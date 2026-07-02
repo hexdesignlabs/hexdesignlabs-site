@@ -33,9 +33,9 @@ Create a GitHub OAuth App at GitHub Developer Settings.
 
 - Application name: `HEX Design Labs CMS`
 - Homepage URL: `https://hexdesignlabs.com`
-- Authorization callback URL: `https://hexdesignlabs.com`
+- Authorization callback URL: `https://hexdesignlabs.com/api/callback`
 
-The function sends GitHub a `redirect_uri` of `https://hexdesignlabs.com/api/callback`. GitHub accepts that because `/api/callback` is a subpath of the configured callback URL.
+The function sends GitHub a `redirect_uri` of `https://hexdesignlabs.com/api/callback`, so the GitHub OAuth App must allow that exact callback URL.
 
 ## Cloudflare Pages Runtime Secrets
 
@@ -43,6 +43,10 @@ In the Cloudflare Pages project, add both OAuth values as encrypted runtime secr
 
 - `GITHUB_CLIENT_ID`
 - `GITHUB_CLIENT_SECRET`
+
+Optional but recommended:
+
+- `GITHUB_REDIRECT_URI` set to `https://hexdesignlabs.com/api/callback`
 
 Use the values from the GitHub OAuth App.
 
@@ -55,9 +59,10 @@ Dashboard path:
 5. Select the Production environment.
 6. Add `GITHUB_CLIENT_ID`.
 7. Add `GITHUB_CLIENT_SECRET`.
-8. Select Encrypt for the values.
-9. Make sure the variables are runtime variables/secrets for Pages Functions, not build-only variables.
-10. Redeploy the production branch after saving them. A deployment created before the variables were saved will not receive them.
+8. Optionally add `GITHUB_REDIRECT_URI` with `https://hexdesignlabs.com/api/callback`.
+9. Select Encrypt for secret values.
+10. Make sure the variables are runtime variables/secrets for Pages Functions, not build-only variables.
+11. Redeploy the production branch after saving them. A deployment created before the variables were saved will not receive them.
 
 Important: if `/api/auth` lists `context.env` keys like `CF_PAGES`, `CF_PAGES_BRANCH`, `PUBLIC_*`, and `ASSETS`, but not `GITHUB_CLIENT_ID` or `GITHUB_CLIENT_SECRET`, the function code is running correctly. The OAuth values are not attached to that deployment's runtime environment.
 

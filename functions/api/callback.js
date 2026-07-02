@@ -47,6 +47,7 @@ export async function onRequest(context) {
 	const { request } = context;
 	const clientId = getEnvVar(context, 'GITHUB_CLIENT_ID');
 	const clientSecret = getEnvVar(context, 'GITHUB_CLIENT_SECRET');
+	const configuredRedirectUri = getEnvVar(context, 'GITHUB_REDIRECT_URI');
 
 	if (!clientId || !clientSecret) {
 		const missing = [
@@ -59,6 +60,7 @@ export async function onRequest(context) {
 
 	try {
 		const url = new URL(request.url);
+		const redirectUri = configuredRedirectUri || `${url.origin}/api/callback`;
 		const code = url.searchParams.get('code');
 		const state = url.searchParams.get('state');
 		const expectedState = getCookie(request, 'decap_oauth_state');
@@ -88,7 +90,7 @@ export async function onRequest(context) {
 				client_id: clientId,
 				client_secret: clientSecret,
 				code,
-				redirect_uri: `${url.origin}/api/callback`,
+				redirect_uri: redirectUri,
 			}),
 		});
 

@@ -19,16 +19,18 @@ function missingEnvResponse(name, context) {
 export async function onRequest(context) {
 	const { request } = context;
 	const clientId = getEnvVar(context, 'GITHUB_CLIENT_ID');
+	const configuredRedirectUri = getEnvVar(context, 'GITHUB_REDIRECT_URI');
 
 	if (!clientId) {
 		return missingEnvResponse('GITHUB_CLIENT_ID', context);
 	}
 
 	const url = new URL(request.url);
+	const redirectUri = configuredRedirectUri || `${url.origin}/api/callback`;
 	const state = crypto.randomUUID();
 	const redirectUrl = new URL('https://github.com/login/oauth/authorize');
 	redirectUrl.searchParams.set('client_id', clientId);
-	redirectUrl.searchParams.set('redirect_uri', `${url.origin}/api/callback`);
+	redirectUrl.searchParams.set('redirect_uri', redirectUri);
 	redirectUrl.searchParams.set('scope', 'repo user');
 	redirectUrl.searchParams.set('state', state);
 	const stateCookie = `decap_oauth_state=${state}; HttpOnly; Secure; SameSite=Lax; Path=/api; Max-Age=600`;
