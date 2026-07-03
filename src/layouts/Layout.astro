@@ -1153,6 +1153,11 @@ const socialImage = ogImage
 		}
 
 		.page {
+			width: 100%;
+			max-width: 100%;
+			margin-right: 0;
+			margin-left: 0;
+			overflow-x: clip;
 			padding: 40px 18px;
 		}
 
@@ -1161,8 +1166,12 @@ const socialImage = ogImage
 		}
 
 		.page-hero.image-hero.full-bleed-hero {
+			width: calc(100% + 36px);
+			max-width: none;
 			margin-top: -40px;
+			margin-right: -18px;
 			margin-bottom: 56px;
+			margin-left: -18px;
 			padding:
 				clamp(72px, 10vh, 96px)
 				18px
