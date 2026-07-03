@@ -110,6 +110,7 @@ const redirectUrl = 'https://hexdesignlabs.com/thank-you/';
 		padding: clamp(80px, 12vw, 140px) clamp(24px, 6vw, 72px);
 		overflow: hidden;
 		border-radius: 20px;
+		clip-path: inset(0 round 20px);
 		background: var(--color-primary);
 		display: flex;
 		flex-direction: column;
@@ -121,6 +122,7 @@ const redirectUrl = 'https://hexdesignlabs.com/thank-you/';
 		content: '';
 		position: absolute;
 		inset: 0;
+		border-radius: inherit;
 		pointer-events: none;
 	}
 
