@@ -14,23 +14,23 @@ import Hero from '../components/Hero.astro';
 			</p>
 
 			<div class="cards">
-				<article class="card">
+				<a href="/services" class="card card-action" aria-label="Explore website design services">
 					<h3>Website Design</h3>
 					<p>Clean, modern small business website design for companies that need a professional online presence, clear service information, and a structure that supports future updates.</p>
-					<a href="/services" class="card-link">Explore website design services</a>
-				</article>
+					<span class="card-link">Explore website design services</span>
+				</a>
 
-				<article class="card">
+				<a href="/services" class="card card-action" aria-label="Review website management options">
 					<h3>Website Management</h3>
 					<p>Ongoing website support for owners who need help with content updates, small page changes, routine site care, and practical improvements over time.</p>
-					<a href="/services" class="card-link">Review website management options</a>
-				</article>
+					<span class="card-link">Review website management options</span>
+				</a>
 
-				<article class="card">
+				<a href="/services" class="card card-action" aria-label="See content support services">
 					<h3>Marketing Support</h3>
 					<p>Design and content support for service pages, landing pages, website copy cleanup, promotional graphics, and customer-facing materials that need to feel consistent.</p>
-					<a href="/services" class="card-link">See content support services</a>
-				</article>
+					<span class="card-link">See content support services</span>
+				</a>
 			</div>
 		</section>
 
@@ -258,6 +258,15 @@ import Hero from '../components/Hero.astro';
 		text-align: left;
 		text-decoration: none;
 		transition: background 0.25s ease, box-shadow 0.25s ease, color 0.25s ease, transform 0.25s ease;
+	}
+
+	.card-action {
+		cursor: pointer;
+	}
+
+	.card-action:focus-visible {
+		outline: 3px solid var(--color-text);
+		outline-offset: 4px;
 	}
 
 	.cards .card:nth-child(1) {
